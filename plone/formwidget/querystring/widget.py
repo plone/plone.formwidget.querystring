@@ -6,12 +6,12 @@ import z3c.form.util
 
 from z3c.form.browser.textarea import TextAreaWidget
 
-from plone.formwidget.query.interfaces import IQueryWidget
+from plone.formwidget.querystring.interfaces import IQueryStringWidget
 
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
-class QueryWidget(TextAreaWidget):
-    implements(IQueryWidget)
+class QueryStringWidget(TextAreaWidget):
+    implements(IQueryStringWidget)
 
     klass = u'layout-widget'
 
@@ -25,5 +25,5 @@ class QueryWidget(TextAreaWidget):
             return self.input_template(self)
 
 @implementer(z3c.form.interfaces.IFieldWidget)
-def QueryWidgetFieldWidget(field, request):
+def QueryStringWidgetFieldWidget(field, request):
     return z3c.form.widget.FieldWidget(field, QueryWidget(request))
