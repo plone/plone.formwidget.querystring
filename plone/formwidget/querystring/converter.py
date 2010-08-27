@@ -12,11 +12,11 @@ class AttributeDict(dict):
 
 
 class QueryStringConverter(BaseDataConverter):
-    """converts values for use with QueryStringWidget (make z3c.form happy)"""
+    """Converts values for use with QueryStringWidget (make z3c.form happy)"""
     zope.component.adapts(IList, IQueryStringWidget)
 
     def toWidgetValue(self, value):
-        """converts given value for use in the widget"""
+        """Converts given value for use in the widget"""
         if value is self.field.missing_value:
             return value
         else:
@@ -29,7 +29,7 @@ class QueryStringConverter(BaseDataConverter):
             return data
 
     def toFieldValue(self, value):
-        """converts value for use in the field"""
+        """Converts value for use in the field"""
         if value is self.field.missing_value:
             return value
         else:

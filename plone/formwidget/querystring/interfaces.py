@@ -3,4 +3,4 @@ from zope.schema.interfaces import IList
 
 
 class IQueryStringWidget(Interface):
-    """Marker interface for the layout widget"""
+    """Marker interface for the querystring widget"""
