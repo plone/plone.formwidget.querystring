@@ -1,17 +1,11 @@
 <div class="ArchetypesQueryWidget"
-     tal:define="fieldName string:;
+     tal:define="fieldName view/__name__;
                  widget nocall:view;
-                 accessor nocall:view/fakeAccessor">
+                 accessor nocall:view/getAccessor">
 
-<!--    <metal:widget-macro use-macro="field_macro | here/widgets/field/macros/edit">
-        <div metal:define-slot="widget_body"/>
-            
-    </metal:widget-macro>-->
-
-     <!-- backwards compatiblity with querywidget.js.... -->
     <div tal:define="config widget/getConfig;
          indexes config/indexes;
-         rows python:request.get('query',accessor(raw=True));
+         rows widget/value;
          sortable_indexes config/sortable_indexes;
          addindexselected python:request.has_key('addindex') and request.addindex != '';
          addoperatorselected python:request.has_key('addoperator') and request.addoperator != ''">

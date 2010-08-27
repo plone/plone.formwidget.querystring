@@ -1,10 +1,6 @@
 from zope.interface import Interface
-from zope.schema.interfaces import IText
-3
+from zope.schema.interfaces import IList
+
 
 class IQueryStringWidget(Interface):
-    """Marker interface for the layout widget
-    """
-
-class IQueryString(IText):
-    """QueryField for storing query"""
+    """Marker interface for the layout widget"""

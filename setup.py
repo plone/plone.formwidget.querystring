@@ -5,7 +5,7 @@ version = '0.1'
 
 setup(name='plone.formwidget.querystring',
       version=version,
-      description="A widget for composing a query string.",
+      description="A widget for composing a Query string/search (used for the contentlisting tile)",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -13,8 +13,8 @@ setup(name='plone.formwidget.querystring',
         "Programming Language :: Python",
         ],
       keywords='',
-      author='Kim Chee Leong, Ralph Jacobs',
-      author_email='leong@gw20e.com, ralph@fourdigits.nl',
+      author='Kim Chee Leong, Ralph Jacobs, Jonas Baumann',
+      author_email='leong@gw20e.com, ralph@fourdigits.nl, j.baumann@4teamwork.ch',
       url='http://svn.plone.org/svn/plone/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),

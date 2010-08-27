@@ -1,2 +1,0 @@
-<tal:block tal:content="structure view/value" />
-widget display.pt

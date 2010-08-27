@@ -2,15 +2,12 @@ from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.interface import implements, implementer
 from plone.app.collection import queryparser
-from plone.app.contentlisting.interfaces import IContentListing
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-
+from zope.app.component.hooks import getSite
 import z3c.form.interfaces
 import z3c.form.util
-
 from z3c.form.widget import FieldWidget
 from z3c.form.widget import Widget
-
 from plone.app.collection.interfaces import ICollectionRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
@@ -23,14 +20,17 @@ class QueryStringWidget(Widget):
     klass = u'querystring-widget'
 
     input_template = ViewPageTemplateFile('input.pt')
-    display_template = ViewPageTemplateFile('display.pt')
 
+    def __init__(self, request):
+        super(QueryStringWidget, self).__init__(request)
+        self.context = getSite()
 
     def render(self):
-        #if self.mode == z3c.form.interfaces.DISPLAY_MODE:
-        #    return self.display_template(self)
-        #else:
         return self.input_template(self)
+
+    def update(self):
+        Widget.update(self)
+        self.context = getSite()
 
     def getConfig(self):
         """get the config"""
@@ -55,17 +55,14 @@ class QueryStringWidget(Widget):
         return config
 
     def SearchResults(self, request, context, accessor):
-        """search results"""
+        """Search results"""
         parsedquery = queryparser.parseFormquery(self.context, self.value)
-        accessor = getMultiAdapter((self.context, self.request), name='searchResults')(query=parsedquery)
+        accessor = getMultiAdapter((self.context, self.request),
+            name='searchResults')(query=parsedquery)
+        return getMultiAdapter((accessor, request),
+            name='display_query_results')()
 
-        return getMultiAdapter((accessor, request), name='display_query_results')()
-
-    def fakeAccessor(self, raw=None):
-#        parsedquery = queryparser.parseFormquery(self.context, self.value)
-#        if not parsedquery:
-#            return IContentListing([])
-#        return getMultiAdapter((self.context, self.request), name='searchResults')(query=parsedquery)
+    def getAccessor(self, raw=None):
         return self.value or []
 
 

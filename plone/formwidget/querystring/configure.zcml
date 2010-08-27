@@ -7,15 +7,15 @@
     i18n_domain="plone.formwidget.contenttree">
 
     <include package="plone.z3cform" />
+    <adapter factory=".converter.QueryStringConverter" />
 
-
-  <zope:view
-      type="zope.publisher.interfaces.browser.IBrowserRequest"
-      for=".interfaces.IQueryStringWidget"
-      provides="zope.app.form.interfaces.IInputWidget"
-      factory=".widget.QueryStringWidget"
-      permission="zope.Public"
-      />
+    <zope:view
+        type="zope.publisher.interfaces.browser.IBrowserRequest"
+        for=".interfaces.IQueryStringWidget"
+        provides="zope.app.form.interfaces.IInputWidget"
+        factory=".widget.QueryStringWidget"
+        permission="zope.Public"
+        />
 
     <gs:registerProfile
         name="default"
