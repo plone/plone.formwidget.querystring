@@ -17,6 +17,7 @@ class QueryStringConverter(BaseDataConverter):
 
     def toWidgetValue(self, value):
         """Converts given value for use in the widget"""
+
         if value is self.field.missing_value:
             return value
         else:
@@ -24,7 +25,11 @@ class QueryStringConverter(BaseDataConverter):
             for dict_ in value:
                 new_dict = AttributeDict()
                 for key, value in dict_.items():
-                    new_dict[key.encode('utf-8')] = value.encode('utf-8')
+                    if isinstance(value, list):
+                        new_dict[key.encode('utf-8')] = \
+                        [x.encode('utf-8') for x in value]
+                    else:
+                        new_dict[key.encode('utf-8')] = value.encode('utf-8')
                 data.append(new_dict)
             return data
 
@@ -37,6 +42,10 @@ class QueryStringConverter(BaseDataConverter):
             for dict_ in value:
                 new_dict = {}
                 for key, value in dict_.items():
-                    new_dict[key.decode('utf-8')] = value.decode('utf-8')
+                    if isinstance(value, list):
+                        new_dict[key.decode('utf-8')] = \
+                        [x.decode('utf-8') for x in value]
+                    else:
+                        new_dict[key.decode('utf-8')] = value.decode('utf-8')
                 data.append(new_dict)
             return data
