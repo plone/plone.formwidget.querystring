@@ -13,7 +13,6 @@ from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
 
 
-
 class QueryStringWidget(Widget):
     implements(IQueryStringWidget)
 
