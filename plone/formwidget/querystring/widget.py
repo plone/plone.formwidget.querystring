@@ -1,14 +1,14 @@
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.interface import implements, implementer
-from plone.app.collection import queryparser
+from plone.app.querystring import queryparser
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.app.component.hooks import getSite
 import z3c.form.interfaces
 import z3c.form.util
 from z3c.form.widget import FieldWidget
 from z3c.form.widget import Widget
-from plone.app.collection.interfaces import ICollectionRegistryReader
+from plone.app.querystring.interfaces import IQuerystringRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
 
@@ -34,7 +34,7 @@ class QueryStringWidget(Widget):
     def getConfig(self):
         """get the config"""
         registry = getUtility(IRegistry)
-        registryreader = ICollectionRegistryReader(registry)
+        registryreader = IQuerystringRegistryReader(registry)
         config = registryreader()
 
         # Group indices by "group", order alphabetically
