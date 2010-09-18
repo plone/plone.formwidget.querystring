@@ -6,27 +6,41 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="plone">
 
-    <include package="plone.z3cform" />
+  <include package="plone.z3cform" />
 
-    <!-- Include our dependencies -->
-    <includeDependencies package="." />
+  <!-- Include our dependencies -->
+  <includeDependencies package="." />
 
-    <adapter factory=".converter.QueryStringConverter" />
+  <adapter factory=".converter.QueryStringConverter" />
 
-    <zope:view
-        type="zope.publisher.interfaces.browser.IBrowserRequest"
-        for=".interfaces.IQueryStringWidget"
-        provides="zope.app.form.interfaces.IInputWidget"
-        factory=".widget.QueryStringWidget"
-        permission="zope.Public"
-        />
+  <zope:view
+    type="zope.publisher.interfaces.browser.IBrowserRequest"
+    for=".interfaces.IQueryStringWidget"
+    provides="zope.app.form.interfaces.IInputWidget"
+    factory=".widget.QueryStringWidget"
+    permission="zope.Public"
+    />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="Querystring formwidget"
-        description="Querystring formwidget for use with the contentlisting tile"
-        directory="profiles/default"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+  <genericsetup:registerProfile
+    name="default"
+    title="Querystring formwidget"
+    description="Querystring formwidget for use with the contentlisting tile"
+    directory="profiles/default"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+  <browser:page
+    name="plone.formwidget.querystring.querywidget.js"
+    for="*"
+    permission="zope2.View"
+    template="querywidget.js"
+    />
+
+  <browser:page
+    name="plone.formwidget.querystring.querywidget.css"
+    for="*"
+    permission="zope2.View"
+    template="querywidget.css"
+    />
 
 </configure>
