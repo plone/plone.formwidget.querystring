@@ -29,18 +29,16 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
-<browser:page
+<browser:resource
     name="plone.formwidget.querystring.querywidget.js"
-    for="*"
     permission="zope2.View"
-    template="querywidget.js"
+    file="querywidget.js"
     />
 
-<browser:page
+<browser:resource
     name="plone.formwidget.querystring.querywidget.css"
-    for="*"
     permission="zope2.View"
-    template="querywidget.css"
+    file="querywidget.css"
     />
 
 </configure>
