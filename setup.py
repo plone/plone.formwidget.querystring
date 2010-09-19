@@ -24,8 +24,7 @@ setup(name='plone.formwidget.querystring',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.collection',
-          # -*- Extra requirements: -*-
+          'plone.app.querystring',
       ],
       entry_points="""
       # -*- Entry points: -*-
