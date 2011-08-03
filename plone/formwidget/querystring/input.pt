@@ -195,8 +195,7 @@
         </div>
 
         <label class="previewresultsLabel">Preview</label>
-        <div class="previewresults" tal:content="structure python:widget.SearchResults(request, context, accessor)">
-        </div>
+        <div class="previewresults"></div>
     </div>
 
 </div>
