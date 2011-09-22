@@ -142,7 +142,6 @@
                     );
                 var dd = $(document.createElement('dd')).addClass('hiddenStructure widgetPulldownMenu')
                 $.each($.querywidget.config.indexes[index].values, function (i, val) {
-                    alert(i);
 					dd.append($(document.createElement('label'))
                         .append($(document.createElement('input'))
                             .attr({
