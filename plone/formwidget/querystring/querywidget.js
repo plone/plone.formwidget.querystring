@@ -225,7 +225,11 @@
         // Init
         $.querywidget.init();
 
-
+        // Remove the hidden sort_on and sort_reversed z3c.form fields because
+        // they are hard-coded in the view.
+        $('#formfield-form-widgets-sort_on').remove();
+        $('#formfield-form-widgets-sort_reversed').remove();
+		
     });
 
     // Init widget
