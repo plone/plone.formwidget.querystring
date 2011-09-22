@@ -46,7 +46,7 @@
         return $.querywidget.createSelect($.querywidget.config.indexes,
                             value,
                             'queryindex',
-                            'query.i:records');
+                            'form.widgets.query.i:records');
     };
 
     // Create a queryoperator select menu
@@ -54,7 +54,7 @@
         return $.querywidget.createSelect($.querywidget.config.indexes[index].operators,
                             value,
                             'queryoperator',
-                            'query.o:records');
+                            'form.widgets.query.o:records');
     };
 
     $.querywidget.createWidget = function (type, index) {
@@ -64,7 +64,7 @@
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'query.v:records'
+                        'name': 'form.widgets.query.v:records'
                     })
                     .addClass('querywidget queryvalue stringWidget');
                 break;
@@ -73,7 +73,7 @@
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'query.v:records'
+                        'name': 'form.widgets.query.v:records'
                     })
                     .addClass('querywidget queryvalue dateWidget');
                 break;
@@ -84,7 +84,7 @@
                         .attr({
                             'autocomplete': 'off',
                             'type': 'text',
-                            'name': 'query.v:records:list'
+                            'name': 'form.widgets.query.v:records:list'
                         })
                         .addClass('queryvalue')
                     )
@@ -95,7 +95,7 @@
                         .attr({
                             'autocomplete': 'off',
                             'type': 'text',
-                            'name': 'query.v:records:list'
+                            'name': 'form.widgets.query.v:records:list'
                         })
                         .addClass('queryvalue')
                     )
@@ -112,7 +112,7 @@
                             .attr({
                                 'autocomplete': 'off',
                                 'type': 'text',
-                                'name': 'query.v:records'
+                                'name': 'form.widgets.query.v:records'
                             })
                             .addClass('queryvalue')
                         )
@@ -123,7 +123,7 @@
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'query.v:records'
+                        'name': 'form.widgets.query.v:records'
                     })
                     .addClass('querywidget queryvalue relativePathWidget');
                 break;
@@ -146,7 +146,7 @@
                         .append($(document.createElement('input'))
                             .attr({
                                 'type': 'checkbox',
-                                'name': 'query.v:records:list',
+                                'name': 'form.widgets.query.v:records:list',
                                 'value': i
                             })
                         )
@@ -179,30 +179,33 @@
     $.querywidget.updateSearch = function () {
         var query = portal_url + "/@@querybuilder_html_results?";
         var querylist  = [];
-        $('.ArchetypesQueryWidget .queryindex').each(function () {
+        var items = $('.ArchetypesQueryWidget .queryindex');
+        if (!items.length) {
+            return;
+        }
+        items.each(function () {
             var results = $(this).parents('.criteria').children('.queryresults');
             var index = $(this).val();
             var operator = $(this).parents('.criteria').children('.queryoperator').val();
             var widget = $.querywidget.config.indexes[index].operators[operator].widget;
-            querylist.push('query.i:records=' + index);
-            querylist.push('query.o:records=' + operator);
+            querylist.push('form.widgets.query.i:records=' + index);
+            querylist.push('form.widgets.query.o:records=' + operator);
             switch (widget) {
                 case 'DateRangeWidget':
                     var querywidget = $(this).parents('.criteria').find('.querywidget');
-                    querylist.push('query.v:records:list=' + $(querywidget.children('input')[0]).val());
-                    querylist.push('query.v:records:list=' + $(querywidget.children('input')[1]).val());
+                    querylist.push('form.widgets.query.v:records:list=' + $(querywidget.children('input')[0]).val());
+                    querylist.push('form.widgets.query.v:records:list=' + $(querywidget.children('input')[1]).val());
                     break;
                 case 'MultipleSelectionWidget':
                     var querywidget = $(this).parents('.criteria').find('.querywidget');
                     querywidget.find('input:checked').each(function () {
-                        querylist.push('query.v:records:list=' + $(this).val());
+                        querylist.push('form.widgets.query.v:records:list=' + $(this).val());
                     });
                     break;
                 default:
                     querylist.push('query.v:records=' + $(this).parents('.criteria').find('.queryvalue').val());
                     break;
             }
-
             $.get(portal_url + '/@@querybuildernumberofresults?' + querylist.join('&'),
                   {},
                   function (data) { results.html(data); });
@@ -366,3 +369,4 @@
         });
     };
 })(jQuery);
+

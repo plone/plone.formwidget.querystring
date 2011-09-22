@@ -8,6 +8,7 @@ import z3c.form.interfaces
 import z3c.form.util
 from z3c.form.widget import FieldWidget
 from z3c.form.widget import Widget
+from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.querystring.interfaces import IQuerystringRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
@@ -56,9 +57,8 @@ class QueryStringWidget(Widget):
     def SearchResults(self, request, context, accessor):
         """Search results"""
         parsedquery = queryparser.parseFormquery(self.context, self.value)
-        accessor = getMultiAdapter((self.context, self.request),
-            name='searchResults')(query=parsedquery)
-        return getMultiAdapter((accessor, request),
+        listing = IContentListing(accessor())
+        return getMultiAdapter((listing, request),
             name='display_query_results')()
 
     def getAccessor(self, raw=None):
@@ -68,3 +68,4 @@ class QueryStringWidget(Widget):
 @implementer(z3c.form.interfaces.IFieldWidget)
 def QueryStringFieldWidget(field, request):
     return FieldWidget(field, QueryStringWidget(request))
+
