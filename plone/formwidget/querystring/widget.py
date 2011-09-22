@@ -1,13 +1,15 @@
+from Acquisition import aq_inner
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.interface import implements, implementer
 from plone.app.querystring import queryparser
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
-from zope.app.component.hooks import getSite
+from zope.site.hooks import getSite
 import z3c.form.interfaces
 import z3c.form.util
 from z3c.form.widget import FieldWidget
 from z3c.form.widget import Widget
+from plone.app.querystring.querybuilder import QueryBuilder
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.querystring.interfaces import IQuerystringRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
@@ -18,19 +20,10 @@ class QueryStringWidget(Widget):
     implements(IQueryStringWidget)
 
     klass = u'querystring-widget'
-
     input_template = ViewPageTemplateFile('input.pt')
-
-    def __init__(self, request):
-        super(QueryStringWidget, self).__init__(request)
-        self.context = getSite()
 
     def render(self):
         return self.input_template(self)
-
-    def update(self):
-        Widget.update(self)
-        self.context = getSite()
 
     def getConfig(self):
         """get the config"""
@@ -54,15 +47,14 @@ class QueryStringWidget(Widget):
         config['groupedIndexes'] = groupedIndexes
         return config
 
-    def SearchResults(self, request, context, accessor):
+    def SearchResults(self):
         """Search results"""
-        parsedquery = queryparser.parseFormquery(self.context, self.value)
-        listing = IContentListing(accessor())
-        return getMultiAdapter((listing, request),
-            name='display_query_results')()
-
-    def getAccessor(self, raw=None):
-        return self.value or []
+        site = getSite()
+        options = dict(original_context=site)      
+        querybuilder = QueryBuilder(site, self.request)
+        listing = querybuilder(query=self.value)
+        return getMultiAdapter((listing, self.request),
+            name='display_query_results')(**options)
 
 
 @implementer(z3c.form.interfaces.IFieldWidget)

@@ -1,7 +1,6 @@
 <div class="ArchetypesQueryWidget"
      tal:define="fieldName view/__name__;
-                 widget nocall:view;
-                 accessor nocall:view/getAccessor">
+                 widget nocall:view;">
 
     <div tal:define="config widget/getConfig;
          indexes config/indexes;
@@ -195,7 +194,7 @@
         </div>
 
         <label class="previewresultsLabel">Preview</label>
-        <div class="previewresults" tal:content="structure python:widget.SearchResults(request, context, accessor)">
+        <div class="previewresults" tal:content="structure python:widget.SearchResults()">
         </div>
     </div>
 
