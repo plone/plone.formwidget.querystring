@@ -139,10 +139,11 @@
                             .html('Select...')
                             .addClass('multipleSelectionWidgetTitle')
                         )
-                    )
+                    );
                 var dd = $(document.createElement('dd')).addClass('hiddenStructure widgetPulldownMenu')
                 $.each($.querywidget.config.indexes[index].values, function (i, val) {
-                    dd.append($(document.createElement('label'))
+                    alert(i);
+					dd.append($(document.createElement('label'))
                         .append($(document.createElement('input'))
                             .attr({
                                 'type': 'checkbox',
@@ -168,7 +169,7 @@
 
     $.querywidget.getCurrentWidget  = function (node) {
         var classes = node.attr('class').split(' ');
-        for (i in classes) {
+        for (var i in classes) {
             if (classes[i].indexOf('Widget') != -1) {
                 var classname = classes[i];
                 return classname.slice(0,1).toUpperCase() + classname.slice(1);
@@ -206,6 +207,7 @@
                     querylist.push('query.v:records=' + $(this).parents('.criteria').find('.queryvalue').val());
                     break;
             }
+            
             $.get(portal_url + '/@@querybuildernumberofresults?' + querylist.join('&'),
                   {},
                   function (data) { results.html(data); });
@@ -213,7 +215,7 @@
         query += querylist.join('&');
         query += '&sort_on=' + $('#sort_on').val();
         if ($('#sort_order:checked').length > 0) {
-            query += '&sort_order=reverse'
+            query += '&sort_order=reverse';
         }
         $.get(query, {}, function (data) { $('.ArchetypesQueryWidget .previewresults').html(data); });
     };
@@ -260,7 +262,7 @@
                         $(document.createElement('div'))
                             .addClass('queryresults discreet')
                             .html('')
-                    )
+                    );
                     $(this).replaceWith($.querywidget.createQueryIndex($(this).children('input').val()));
                 });
                 $('div.queryoperator').each(function () {
@@ -339,7 +341,7 @@
                     $(document.createElement('div'))
                         .addClass('queryresults discreet')
                         .html('')
-                )
+                );
             newcriteria.append($.querywidget.createQueryIndex(index));
             var operator = $.querywidget.createQueryOperator(index,'');
             newcriteria.append(operator);
@@ -356,7 +358,7 @@
                         'name': 'removecriteria'
                     })
                     .addClass('removecriteria discreet')
-            )
+            );
             criteria.before(newcriteria);
             $(this).val('');
             $.querywidget.updateSearch();

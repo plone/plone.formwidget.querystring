@@ -1,5 +1,5 @@
 <div class="ArchetypesQueryWidget"
-     tal:define="fieldName view/__name__;
+     tal:define="fieldName view/name;
                  widget nocall:view;">
 
     <div tal:define="config widget/getConfig;
