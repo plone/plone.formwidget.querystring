@@ -142,7 +142,7 @@
                     );
                 var dd = $(document.createElement('dd')).addClass('hiddenStructure widgetPulldownMenu')
                 $.each($.querywidget.config.indexes[index].values, function (i, val) {
-					dd.append($(document.createElement('label'))
+                    dd.append($(document.createElement('label'))
                         .append($(document.createElement('input'))
                             .attr({
                                 'type': 'checkbox',
@@ -226,10 +226,19 @@
         $.querywidget.init();
 
         // Remove the hidden sort_on and sort_reversed z3c.form fields because
-        // they are hard-coded in the view.
+        // they are hard-coded in the view. Read the values from these hidden
+        // fields and set the values of the hard-coded fields accordingly.
+        var sort_on = $('#form-widgets-sort_on').val();
+        var sort_reversed = $('#form-widgets-sort_reversed-0');
         $('#formfield-form-widgets-sort_on').remove();
         $('#formfield-form-widgets-sort_reversed').remove();
-		
+        $('#sort_on').val(sort_on);
+        if (sort_reversed.attr('value') === 'selected') {
+            $('#sort_order').attr('checked', true);
+        } else {
+            $('#sort_order').attr('checked', false);
+        }
+
     });
 
     // Init widget
