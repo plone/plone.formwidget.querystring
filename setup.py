@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '1.0a1'
 
 setup(name='plone.formwidget.querystring',
       version=version,
@@ -16,7 +16,7 @@ setup(name='plone.formwidget.querystring',
       author='Kim Chee Leong, Ralph Jacobs, Jonas Baumann',
       author_email='leong@gw20e.com, ralph@fourdigits.nl, ' \
                    'j.baumann@4teamwork.ch',
-      url='http://svn.plone.org/svn/plone/',
+      url='https://github.com/plone/plone.formwidget.querystring',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['plone', 'plone.formwidget'],
