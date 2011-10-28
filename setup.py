@@ -5,17 +5,16 @@ version = '1.0a1'
 
 setup(name='plone.formwidget.querystring',
       version=version,
-      description="A widget for composing a Query string/search (used for " \
-                  "the contentlisting tile)",
+      description="A widget for composing a Query string/search.",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
+        "Framework :: Plone",      
         "Programming Language :: Python",
         ],
       keywords='',
-      author='Kim Chee Leong, Ralph Jacobs, Jonas Baumann',
-      author_email='leong@gw20e.com, ralph@fourdigits.nl, ' \
-                   'j.baumann@4teamwork.ch',
+      author='Plone Foundation',
+      author_email='plone-developers@lists.sourceforge.net',
       url='https://github.com/plone/plone.formwidget.querystring',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
