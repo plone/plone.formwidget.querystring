@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.0 (unreleased)
+----------------
+
+- Stop hardcoding the field name so it works with other field names and
+  prefixes.
+  [davisagli]
+
 1.0a1 (2011-10-28)
 ------------------
 

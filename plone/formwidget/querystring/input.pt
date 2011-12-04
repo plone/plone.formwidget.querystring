@@ -1,6 +1,7 @@
 <div class="ArchetypesQueryWidget"
      tal:define="fieldName view/name;
-                 widget nocall:view;">
+                 widget nocall:view;"
+     tal:attributes="data-fieldname fieldName">
 
     <div tal:define="config widget/getConfig;
          indexes config/indexes;

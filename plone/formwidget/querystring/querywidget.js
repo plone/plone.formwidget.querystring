@@ -42,29 +42,29 @@
     };
 
     // Create a queryindex select menu
-    $.querywidget.createQueryIndex = function (value) {
+    $.querywidget.createQueryIndex = function (value, fname) {
         return $.querywidget.createSelect($.querywidget.config.indexes,
                             value,
                             'queryindex',
-                            'form.widgets.query.i:records');
+                            fname + '.i:records');
     };
 
     // Create a queryoperator select menu
-    $.querywidget.createQueryOperator = function (index, value) {
+    $.querywidget.createQueryOperator = function (index, value, fname) {
         return $.querywidget.createSelect($.querywidget.config.indexes[index].operators,
                             value,
                             'queryoperator',
-                            'form.widgets.query.o:records');
+                            fname + '.o:records');
     };
 
-    $.querywidget.createWidget = function (type, index) {
+    $.querywidget.createWidget = function (type, index, fname) {
         switch (type) {
             case 'StringWidget':
                 return $(document.createElement('input'))
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'form.widgets.query.v:records'
+                        'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue stringWidget');
                 break;
@@ -73,7 +73,7 @@
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'form.widgets.query.v:records'
+                        'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue dateWidget');
                 break;
@@ -84,7 +84,7 @@
                         .attr({
                             'autocomplete': 'off',
                             'type': 'text',
-                            'name': 'form.widgets.query.v:records:list'
+                            'name': fname + '.v:records:list'
                         })
                         .addClass('queryvalue')
                     )
@@ -95,7 +95,7 @@
                         .attr({
                             'autocomplete': 'off',
                             'type': 'text',
-                            'name': 'form.widgets.query.v:records:list'
+                            'name': fname + '.v:records:list'
                         })
                         .addClass('queryvalue')
                     )
@@ -112,7 +112,7 @@
                             .attr({
                                 'autocomplete': 'off',
                                 'type': 'text',
-                                'name': 'form.widgets.query.v:records'
+                                'name': fname + '.v:records'
                             })
                             .addClass('queryvalue')
                         )
@@ -123,7 +123,7 @@
                     .attr({
                         'autocomplete': 'off',
                         'type': 'text',
-                        'name': 'form.widgets.query.v:records'
+                        'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue relativePathWidget');
                 break;
@@ -146,7 +146,7 @@
                         .append($(document.createElement('input'))
                             .attr({
                                 'type': 'checkbox',
-                                'name': 'form.widgets.query.v:records:list',
+                                'name': fname + '.v:records:list',
                                 'value': i
                             })
                         )
@@ -263,6 +263,7 @@
 
                 // Get object
                 var obj = $(this);
+                var fname = obj.attr('data-fieldname');
 
                 // Hide controls used for non-javascript only
                 obj.find(".addIndexButton").hide();
@@ -275,11 +276,11 @@
                             .addClass('queryresults discreet')
                             .html('')
                     );
-                    $(this).replaceWith($.querywidget.createQueryIndex($(this).children('input').val()));
+                    $(this).replaceWith($.querywidget.createQueryIndex($(this).children('input').val()), fname);
                 });
                 $('div.queryoperator').each(function () {
                     $(this).replaceWith($.querywidget.createQueryOperator($(this).parents('.criteria').children('.queryindex').val(),
-                                                            $(this).children('input').val()));
+                                                            $(this).children('input').val(), fname));
                 });
                 $.querywidget.updateSearch();
             });
@@ -294,25 +295,27 @@
         });
 
         $('.queryindex').live('change', function () {
+            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             $(this).parents(".criteria").children('.queryoperator')
-                .replaceWith($.querywidget.createQueryOperator(index, ''));
+                .replaceWith($.querywidget.createQueryOperator(index, '', fname));
             var operatorvalue = $(this).parents('.criteria').children('.queryoperator').val();
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
             var querywidget = $(this).parent(".criteria").children('.querywidget');
             if ((widget != $.querywidget.getCurrentWidget(querywidget)) || (widget == 'MultipleSelectionWidget')) {
-                querywidget.replaceWith($.querywidget.createWidget(widget, index));
+                querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
             }
             $.querywidget.updateSearch();
         });
 
         $('.queryoperator').live('change', function () {
+            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
             var index = $(this).parents('.criteria').children('.queryindex').val();
             var operatorvalue = $(this).children(':selected')[0].value;
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
             var querywidget = $(this).parent().children('.querywidget');
             if (widget != $.querywidget.getCurrentWidget(querywidget)) {
-                querywidget.replaceWith($.querywidget.createWidget(widget, index));
+                querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
             }
             $.querywidget.updateSearch();
         });
@@ -344,6 +347,7 @@
         });
 
         $('.addIndex').live('change', function () {
+            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             var criteria = $(this).parents('.criteria');
             var newcriteria = $(document.createElement('div'))
@@ -354,11 +358,11 @@
                         .addClass('queryresults discreet')
                         .html('')
                 );
-            newcriteria.append($.querywidget.createQueryIndex(index));
-            var operator = $.querywidget.createQueryOperator(index,'');
+            newcriteria.append($.querywidget.createQueryIndex(index, fname));
+            var operator = $.querywidget.createQueryOperator(index, '', fname);
             newcriteria.append(operator);
             var operatorvalue = $(operator.children()[0]).attr('value');
-            newcriteria.append($.querywidget.createWidget($.querywidget.config.indexes[index].operators[operatorvalue].widget, index));
+            newcriteria.append($.querywidget.createWidget($.querywidget.config.indexes[index].operators[operatorvalue].widget, index, fname));
             newcriteria.append(
 
                 // How will we translate these values?
