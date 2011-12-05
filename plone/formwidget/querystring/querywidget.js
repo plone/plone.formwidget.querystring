@@ -276,7 +276,7 @@
                             .addClass('queryresults discreet')
                             .html('')
                     );
-                    $(this).replaceWith($.querywidget.createQueryIndex($(this).children('input').val()), fname);
+                    $(this).replaceWith($.querywidget.createQueryIndex($(this).children('input').val(), fname));
                 });
                 $('div.queryoperator').each(function () {
                     $(this).replaceWith($.querywidget.createQueryOperator($(this).parents('.criteria').children('.queryindex').val(),
