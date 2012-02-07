@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0a1'
+version = '1.0b1dev'
 
 setup(name='plone.formwidget.querystring',
       version=version,
@@ -9,7 +9,7 @@ setup(name='plone.formwidget.querystring',
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
-        "Framework :: Plone",      
+        "Framework :: Plone",
         "Programming Language :: Python",
         ],
       keywords='',
