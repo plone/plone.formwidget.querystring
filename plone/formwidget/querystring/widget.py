@@ -1,8 +1,6 @@
-from Acquisition import aq_inner
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.interface import implements, implementer
-from plone.app.querystring import queryparser
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.site.hooks import getSite
 import z3c.form.interfaces
@@ -10,7 +8,6 @@ import z3c.form.util
 from z3c.form.widget import FieldWidget
 from z3c.form.widget import Widget
 from plone.app.querystring.querybuilder import QueryBuilder
-from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.querystring.interfaces import IQuerystringRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
@@ -60,4 +57,3 @@ class QueryStringWidget(Widget):
 @implementer(z3c.form.interfaces.IFieldWidget)
 def QueryStringFieldWidget(field, request):
     return FieldWidget(field, QueryStringWidget(request))
-
