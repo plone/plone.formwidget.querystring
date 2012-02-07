@@ -1,11 +1,11 @@
 Introduction
 ============
 
-A z3c.form-based widget for composing a Query string/search. 
+A z3c.form-based widget for composing a Query string/search.
 
-This widget is used by the contentlisting tile and the dexterity-based version 
-of plone.app.collection (>2.0), to make selections, and 'build' your query. It 
-stores a list of dictionaries containing the query you've build. This query is 
+This widget is used by the contentlisting tile and the dexterity-based version
+of plone.app.collection (>2.0), to make selections, and 'build' your query. It
+stores a list of dictionaries containing the query you've build. This query is
 being parsed by using plone.app.collection and that used
 plone.app.contentlisting to display the results in the tile.
 
@@ -19,10 +19,10 @@ package::
 
     install_requires=[
         'plone.formwidget.querystring',
-        ...          
+        ...
     ],
 
-You probably want to also use it to the list of dependencies in your generic 
+You probably want to also use it to the list of dependencies in your generic
 setup profile (profiles/default/metadata.xml)::
 
     <metadata>
@@ -60,9 +60,9 @@ definition (interfaces.py)::
 
 .. note::
 
-  See:: See 
+  See:: See
   https://github.com/plone/plone.app.collection/blob/dexterity-tisto/plone/app/collection/interfaces.py#L16
-  and 
+  and
   https://github.com/plone/plone.app.standardtiles/blob/master/plone/app/standardtiles/contentlisting.py#L19
   for further examples of how to use plone.formwidget.querystring.
 

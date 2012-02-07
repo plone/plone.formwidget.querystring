@@ -50,7 +50,7 @@ class QueryStringWidget(Widget):
     def SearchResults(self):
         """Search results"""
         site = getSite()
-        options = dict(original_context=site)      
+        options = dict(original_context=site)
         querybuilder = QueryBuilder(site, self.request)
         listing = querybuilder(query=self.value)
         return getMultiAdapter((listing, self.request),
