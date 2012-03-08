@@ -67,7 +67,6 @@
                         'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue stringWidget');
-                break;
             case 'DateWidget':
                 return $(document.createElement('input'))
                     .attr({
@@ -76,7 +75,6 @@
                         'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue dateWidget');
-                break;
             case 'DateRangeWidget':
                 return $(document.createElement('div'))
                     .addClass('querywidget dateRangeWidget')
@@ -98,8 +96,7 @@
                             'name': fname + '.v:records:list'
                         })
                         .addClass('queryvalue')
-                    )
-                break;
+                    );
             case 'ReferenceWidget':
                 return $(document.createElement('dl'))
                     .addClass('querywidget referenceWidget')
@@ -116,8 +113,7 @@
                             })
                             .addClass('queryvalue')
                         )
-                    )
-                break;
+                    );
             case 'RelativePathWidget':
                 return $(document.createElement('input'))
                     .attr({
@@ -126,7 +122,6 @@
                         'name': fname + '.v:records'
                     })
                     .addClass('querywidget queryvalue relativePathWidget');
-                break;
             case 'MultipleSelectionWidget':
                 var dl = $(document.createElement('dl'))
                     .addClass('querywidget multipleSelectionWidget')
@@ -140,7 +135,7 @@
                             .addClass('multipleSelectionWidgetTitle')
                         )
                     );
-                var dd = $(document.createElement('dd')).addClass('hiddenStructure widgetPulldownMenu')
+                var dd = $(document.createElement('dd')).addClass('hiddenStructure widgetPulldownMenu');
                 $.each($.querywidget.config.indexes[index].values, function (i, val) {
                     dd.append($(document.createElement('label'))
                         .append($(document.createElement('input'))
@@ -153,16 +148,14 @@
                         .append($(document.createElement('span'))
                             .html(val.title)
                         )
-                    )
+                    );
                 });
                 dl.append(dd);
                 return dl;
-                break;
             default:
                 return $(document.createElement('div'))
                     .html('&nbsp;')
                     .addClass('querywidget queryvalue emptyWidget');
-                break;
         }
     };
 
