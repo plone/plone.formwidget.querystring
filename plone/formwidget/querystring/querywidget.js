@@ -1,7 +1,7 @@
 ;(function($) {
 
     // Define querywidget namespace if it doesn't exist
-    if (typeof($.querywidget) == "undefined") {
+    if (typeof($.querywidget) === "undefined") {
         $.querywidget = {
             config: {},
             initialized: false
@@ -16,16 +16,16 @@
                             .addClass(className)
                             .attr('name', name);
         $.each(values, function (i, val) {
-            if ((typeof(val.enabled) == "undefined") || (val.enabled)) {
+            if ((typeof(val.enabled) === "undefined") || (val.enabled)) {
                 var option = $(document.createElement('option'))
                                 .attr('value', i)
                                 .html(val.title);
-                if (i == selectedvalue) {
+                if (i === selectedvalue) {
                     option.attr('selected', 'selected');
                 }
                 if (typeof(val.group) != "undefined") {
                     var optgroup = select.find("optgroup[label=" + val.group + "]");
-                    if (optgroup.length == 0) {
+                    if (optgroup.length === 0) {
                         optgroup = $(document.createElement('optgroup'))
                                     .attr('label', val.group);
                         optgroup.append(option);
@@ -206,7 +206,7 @@
                     querylist.push('query.v:records=' + $(this).parents('.criteria').find('.queryvalue').val());
                     break;
             }
-            
+
             $.get(portal_url + '/@@querybuildernumberofresults?' + querylist.join('&'),
                   {},
                   function (data) { results.html(data); });
@@ -245,7 +245,7 @@
     $.querywidget.init = function () {
 
         // Check if already initialized
-        if ($.querywidget.initialized == true) {
+        if ($.querywidget.initialized === true) {
 
             // Return nothing done
             return false;
@@ -302,7 +302,7 @@
             var operatorvalue = $(this).parents('.criteria').children('.queryoperator').val();
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
             var querywidget = $(this).parent(".criteria").children('.querywidget');
-            if ((widget != $.querywidget.getCurrentWidget(querywidget)) || (widget == 'MultipleSelectionWidget')) {
+            if ((widget != $.querywidget.getCurrentWidget(querywidget)) || (widget === 'MultipleSelectionWidget')) {
                 querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
             }
             $.querywidget.updateSearch();
@@ -341,7 +341,7 @@
         });
 
         $('.queryvalue').live('keydown', function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 return false;
             }
         });
