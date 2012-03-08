@@ -1,4 +1,4 @@
-;(function($) {
+(function ($) {
 
     // Define querywidget namespace if it doesn't exist
     if (typeof($.querywidget) === "undefined") {
@@ -23,7 +23,7 @@
                 if (i === selectedvalue) {
                     option.attr('selected', 'selected');
                 }
-                if (typeof(val.group) != "undefined") {
+                if (typeof(val.group) !== "undefined") {
                     var optgroup = select.find("optgroup[label=" + val.group + "]");
                     if (optgroup.length === 0) {
                         optgroup = $(document.createElement('optgroup'))
@@ -169,7 +169,7 @@
     $.querywidget.getCurrentWidget  = function (node) {
         var classes = node.attr('class').split(' ');
         for (var i in classes) {
-            if (classes[i].indexOf('Widget') != -1) {
+            if (classes[i].indexOf('Widget') !== -1) {
                 var classname = classes[i];
                 return classname.slice(0,1).toUpperCase() + classname.slice(1);
             }
@@ -302,7 +302,7 @@
             var operatorvalue = $(this).parents('.criteria').children('.queryoperator').val();
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
             var querywidget = $(this).parent(".criteria").children('.querywidget');
-            if ((widget != $.querywidget.getCurrentWidget(querywidget)) || (widget === 'MultipleSelectionWidget')) {
+            if ((widget !== $.querywidget.getCurrentWidget(querywidget)) || (widget === 'MultipleSelectionWidget')) {
                 querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
             }
             $.querywidget.updateSearch();
@@ -314,7 +314,7 @@
             var operatorvalue = $(this).children(':selected')[0].value;
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
             var querywidget = $(this).parent().children('.querywidget');
-            if (widget != $.querywidget.getCurrentWidget(querywidget)) {
+            if (widget !== $.querywidget.getCurrentWidget(querywidget)) {
                 querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
             }
             $.querywidget.updateSearch();
