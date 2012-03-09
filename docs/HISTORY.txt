@@ -1,12 +1,15 @@
 Changelog
 =========
 
-1.0 (unreleased)
-----------------
+1.0b1 (unreleased)
+------------------
 
 - Stop hardcoding the field name so it works with other field names and
   prefixes.
   [davisagli]
+
+- Rename ArcheTypesQueryWidget to Querywidget to avoid confusion.
+  [timo]
 
 - Make sure the sorting settings are actually stored on the collection.
   [timo]
