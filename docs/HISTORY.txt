@@ -11,6 +11,9 @@ Changelog
 - Rename ArcheTypesQueryWidget to Querywidget to avoid confusion.
   [timo]
 
+- Several JSLint fixes on querywidget.js
+  [timo]
+
 - Make sure the sorting settings are actually stored on the collection.
   [timo]
 
