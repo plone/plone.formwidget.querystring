@@ -61,9 +61,9 @@ definition (interfaces.py)::
 .. note::
 
   See:: See
-  https://github.com/plone/plone.app.collection/blob/dexterity-tisto/plone/app/collection/interfaces.py#L16
+  https://github.com/plone/plone.app.collection/blob/master/plone/app/collection/interfaces.py#L16
   and
-  https://github.com/plone/plone.app.standardtiles/blob/master/plone/app/standardtiles/contentlisting.py#L19
+  https://github.com/plone/plone.app.contentlistingtile/blob/master/plone/app/contentlistingtile/tile.py#L18
   for further examples of how to use plone.formwidget.querystring.
 
 
