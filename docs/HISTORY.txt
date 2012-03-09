@@ -8,6 +8,10 @@ Changelog
   prefixes.
   [davisagli]
 
+- Make sure the sorting settings are actually stored on the collection.
+  [timo]
+
+
 1.0a1 (2011-10-28)
 ------------------
 

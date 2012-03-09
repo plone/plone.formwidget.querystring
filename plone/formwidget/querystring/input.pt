@@ -180,17 +180,17 @@
 
         <div class="sortingField">
             <div class="formHelp"><!-- --></div>
-            <label for="form.widgets.sort_on">
+            <label for="sort_on">
             Sort on
             </label>
-            <select name="form.widgets.sort_on" id="sort_on">
+            <select name="sort_on" id="sort_on">
                 <tal:index repeat="index python:sortable_indexes.keys()">
                     <option tal:attributes="value index; selected python:(request.has_key('sort_on') and request.sort_on == index) and 'selected' or nothing"
                             tal:content="python:sortable_indexes[index]['title']">Index</option>
                 </tal:index>
             </select>
 
-            <input type="checkbox" name="form.widgets.sort_order" value="reverse" checked="checked" id="sort_order"/>
+            <input type="checkbox" name="sort_order" value="reverse" checked="checked" id="sort_order"/>
             <label for="sort_order">Reversed order</label>
         </div>
 

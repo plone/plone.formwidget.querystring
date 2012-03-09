@@ -218,19 +218,41 @@
         // Init
         $.querywidget.init();
 
-        // Remove the hidden sort_on and sort_reversed z3c.form fields because
-        // they are hard-coded in the view. Read the values from these hidden
-        // fields and set the values of the hard-coded fields accordingly.
-        var sort_on = $('#form-widgets-sort_on').val();
-        var sort_reversed = $('#form-widgets-sort_reversed-0');
-        $('#formfield-form-widgets-sort_on').remove();
-        $('#formfield-form-widgets-sort_reversed').remove();
-        $('#sort_on').val(sort_on);
-        if (sort_reversed.attr('value') === 'selected') {
+        // We need two keep two fields for each sorting field ('#sort_on',
+        // '#sort_reversed'). The query results preview that calls
+        // '@@querybuilder_html_results' in plone.app.querystring expects a
+        // sort_on and sort_order param. To store the actual setting on the
+        // collection we need the two z3c.form-based fields
+        // ('#form-widgets-sort_on', '#form-widgets-sort_reversed')
+
+        // Synchronize the '#sort_on' field with the hidden
+        // #form-widgets-sort_on z3c.form field on load.
+        $('#sort_on').val($('#form-widgets-sort_on').val());
+
+        // Synchronize the '#sort_order' field with the hidden
+        // #form-widgets-sort_reversed z3c.form field on load.
+        if ($('#form-widgets-sort_reversed-0').attr('checked')) {
             $('#sort_order').attr('checked', true);
         } else {
             $('#sort_order').attr('checked', false);
         }
+
+        // Synchronize the z3c.form '#form-widgets-sort_on' field
+        // with the '#sort_on' field on user interaction
+        $("#sort_on").live('click', function () {
+            $('#form-widgets-sort_on').val($(this).val());
+        });
+
+        // Synchronize the z3c.form '#form-widgets-sort_reversed' field
+        // with the '#sort_order' field on user interaction.
+        $("#sort_order").live('click', function () {
+            $('#form-widgets-sort_reversed-0').attr('checked', $(this).attr('checked'));
+        });
+
+        // Hide the z3c.form widgets for sorting because they are only needed
+        // internally.
+        $('#formfield-form-widgets-sort_on').hide();
+        $('#formfield-form-widgets-sort_reversed').hide();
 
     });
 
