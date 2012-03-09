@@ -186,13 +186,13 @@
             querylist.push('query.o:records=' + operator);
             switch (widget) {
                 case 'DateRangeWidget':
-                    var querywidget = $(this).parents('.criteria').find('.querywidget');
-                    querylist.push('query.v:records:list=' + $(querywidget.children('input')[0]).val());
-                    querylist.push('query.v:records:list=' + $(querywidget.children('input')[1]).val());
+                    var daterangewidget = $(this).parents('.criteria').find('.querywidget');
+                    querylist.push('query.v:records:list=' + $(daterangewidget.children('input')[0]).val());
+                    querylist.push('query.v:records:list=' + $(daterangewidget.children('input')[1]).val());
                     break;
                 case 'MultipleSelectionWidget':
-                    var querywidget = $(this).parents('.criteria').find('.querywidget');
-                    querywidget.find('input:checked').each(function () {
+                    var multipleselectionwidget = $(this).parents('.criteria').find('.querywidget');
+                    multipleselectionwidget.find('input:checked').each(function () {
                         querylist.push('query.v:records:list=' + $(this).val());
                     });
                     break;
