@@ -161,7 +161,8 @@
 
     $.querywidget.getCurrentWidget  = function (node) {
         var classes = node.attr('class').split(' ');
-        for (var i in classes) {
+        var i;
+        for(i = 0; i<classes.length; i++) {
             if (classes[i].indexOf('Widget') !== -1) {
                 var classname = classes[i];
                 return classname.slice(0,1).toUpperCase() + classname.slice(1);
@@ -401,5 +402,5 @@
             return false;
         });
     };
-})(jQuery);
 
+}(jQuery));
