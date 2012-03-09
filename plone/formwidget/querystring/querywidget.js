@@ -172,7 +172,7 @@
     $.querywidget.updateSearch = function () {
         var query = portal_url + "/@@querybuilder_html_results?";
         var querylist  = [];
-        var items = $('.ArchetypesQueryWidget .queryindex');
+        var items = $('.QueryWidget .queryindex');
         if (!items.length) {
             return;
         }
@@ -209,7 +209,7 @@
         if ($('#sort_order:checked').length > 0) {
             query += '&sort_order=reverse';
         }
-        $.get(query, {}, function (data) { $('.ArchetypesQueryWidget .previewresults').html(data); });
+        $.get(query, {}, function (data) { $('.QueryWidget .previewresults').html(data); });
     };
 
     // Enhance for javascript browsers
@@ -252,7 +252,7 @@
             $.querywidget.config = data;
 
             // Find querywidgets
-            $(".ArchetypesQueryWidget").each(function () {
+            $(".QueryWidget").each(function () {
 
                 // Get object
                 var obj = $(this);
@@ -288,7 +288,7 @@
         });
 
         $('.queryindex').live('change', function () {
-            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
+            var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             $(this).parents(".criteria").children('.queryoperator')
                 .replaceWith($.querywidget.createQueryOperator(index, '', fname));
@@ -302,7 +302,7 @@
         });
 
         $('.queryoperator').live('change', function () {
-            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
+            var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).parents('.criteria').children('.queryindex').val();
             var operatorvalue = $(this).children(':selected')[0].value;
             var widget = $.querywidget.config.indexes[index].operators[operatorvalue].widget;
@@ -340,7 +340,7 @@
         });
 
         $('.addIndex').live('change', function () {
-            var fname = $(this).closest('.ArchetypesQueryWidget').attr('data-fieldname');
+            var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             var criteria = $(this).parents('.criteria');
             var newcriteria = $(document.createElement('div'))

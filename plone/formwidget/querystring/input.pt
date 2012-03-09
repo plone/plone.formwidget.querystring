@@ -1,4 +1,4 @@
-<div class="ArchetypesQueryWidget"
+<div class="QueryWidget"
      tal:define="fieldName view/name;
                  widget nocall:view;"
      tal:attributes="data-fieldname fieldName">
