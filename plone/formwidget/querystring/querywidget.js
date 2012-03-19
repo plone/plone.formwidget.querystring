@@ -247,7 +247,11 @@
         // Synchronize the z3c.form '#form-widgets-sort_reversed' field
         // with the '#sort_order' field on user interaction.
         $("#sort_order").live('click', function () {
-            $('#form-widgets-sort_reversed-0').attr('checked', $(this).attr('checked'));
+            if ($(this).is(":checked")) {
+                $('#form-widgets-sort_reversed-0').attr('checked', true);
+            } else {
+                $('#form-widgets-sort_reversed-0').attr('checked', false);
+            }
         });
 
         // Hide the z3c.form widgets for sorting because they are only needed

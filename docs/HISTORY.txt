@@ -1,10 +1,11 @@
 Changelog
 =========
 
-1.0 (unreleased)
-----------------
+1.0b2 (unreleased)
+------------------
 
-- nothing yet.
+- Fix sort-reversed checkbox javascript.
+  [timo]
 
 
 1.0b1 (2012-03-09)
