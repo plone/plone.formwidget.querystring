@@ -171,7 +171,17 @@
     };
 
     $.querywidget.updateSearch = function () {
-        var query = portal_url + "/@@querybuilder_html_results?";
+        var context_url = (function() {
+            var baseUrl, pieces;
+            baseUrl = $('base').attr('href');
+            if (!baseUrl) {
+                pieces = window.location.href.split('/');
+                pieces.pop();
+                baseUrl = pieces.join('/');
+            }
+            return baseUrl;
+        })();
+        var query = context_url + "/@@querybuilder_html_results?";
         var querylist  = [];
         var items = $('.QueryWidget .queryindex');
         if (!items.length) {
@@ -201,7 +211,7 @@
                     break;
             }
 
-            $.get(portal_url + '/@@querybuildernumberofresults?' + querylist.join('&'),
+            $.get(context_url + '/@@querybuildernumberofresults?' + querylist.join('&'),
                   {},
                   function (data) { results.html(data); });
         });
@@ -215,6 +225,11 @@
 
     // Enhance for javascript browsers
     $(document).ready(function () {
+
+        // Check if QueryWidget exists on page
+        if ($(".QueryWidget").length === 0) {
+            return false;
+        }
 
         // Init
         $.querywidget.init();
