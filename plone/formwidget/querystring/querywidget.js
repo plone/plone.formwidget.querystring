@@ -226,6 +226,11 @@
     // Enhance for javascript browsers
     $(document).ready(function () {
 
+        // Check if QueryWidget exists on page
+        if ($(".QueryWidget").length === 0) {
+            return false;
+        }
+
         // Init
         $.querywidget.init();
 

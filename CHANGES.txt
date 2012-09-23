@@ -7,6 +7,9 @@ Changelog
 - Fixed context for getting ajax results
   [kroman0]
 
+- Fixed conditional initialization of querywidget,
+  see https://dev.plone.org/ticket/12529 [kroman0]
+
 
 1.0b2 (2012-03-19)
 ------------------
