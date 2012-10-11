@@ -322,12 +322,19 @@
         });
 
         $('.multipleSelectionWidget dt').live('click', function () {
-            if ($(this).parent().children('dd').hasClass('hiddenStructure')) {
-                $(this).parent().children('dd').removeClass('hiddenStructure');
-            } else {
-                $(this).parent().children('dd').addClass('hiddenStructure');
-            }
+            $(this).parent().children('dd').toggle();
         });
+
+        /* Clicking outside a multipleSelectionWidget will close all open
+           multipleSelectionWidgets */
+
+        $(window).click(function(event){
+            if ($(event.target).parents('.multipleSelectionWidget').length) {
+                return;
+            }
+            $('.multipleSelectionWidget dd').hide();
+        });
+
 
         $('.queryindex').live('change', function () {
             var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
