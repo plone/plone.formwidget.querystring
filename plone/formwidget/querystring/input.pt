@@ -1,7 +1,8 @@
 <div class="QueryWidget"
      tal:define="fieldName view/name;
                  widget nocall:view;"
-     tal:attributes="data-fieldname fieldName">
+     tal:attributes="data-fieldname fieldName"
+     i18n:domain="plone">
 
     <div tal:define="config widget/getConfig;
          indexes config/indexes;
@@ -33,7 +34,10 @@
 
                 <dl class="querywidget queryvalue multipleSelectionWidget"
                     tal:condition="python:indexes[row.i]['operators'][row.o]['widget'] == 'MultipleSelectionWidget'">
-                    <dt class="hiddenStructure"><span class="arrowDownAlternative">&#09660;</span><span class="multipleSelectionWidgetTitle">Select&hellip;</span></dt>
+                    <dt class="hiddenStructure">
+                        <span class="arrowDownAlternative">&#09660;</span>
+                        <span class="multipleSelectionWidgetTitle" i18n:translate="">Select&hellip;</span>
+                    </dt>
                     <dd>
                         <tal:values repeat="index python:indexes[row.i]['values'].keys()">
                             <label>
@@ -48,7 +52,7 @@
 
                 <dl class="querywidget referenceWidget"
                     tal:condition="python:indexes[row.i]['operators'][row.o]['widget'] == 'ReferenceWidget'">
-                    <dt class="hiddenStructure">Select&hellip;</dt>
+                    <dt class="hiddenStructure" i18n:translate="">Select&hellip;</dt>
                     <dd>
                         <input class="queryvalue" autocomplete="off" type="text" name="form.widgets.query.v:records" tal:attributes="name python:str(fieldName)+'.v:records'; value python:row['v']" />
                     </dd>
@@ -106,7 +110,7 @@
 
             <dl class="querywidget queryvalue multipleSelectionWidget"
                 tal:condition="python:indexes[request.form['addindex']]['operators'][request.form['addoperator']]['widget'] == 'MultipleSelectionWidget'">
-                <dt class="hiddenStructure">Select&hellip;</dt>
+                <dt class="hiddenStructure" i18n:translate="">Select&hellip;</dt>
                 <dd>
                     <tal:values repeat="index python:indexes[request.form['addindex']]['values'].keys()">
                         <label>
@@ -120,7 +124,7 @@
             <div class="querywidget referenceWidget"
                  tal:condition="python:indexes[request.form['addindex']]['operators'][request.form['addoperator']]['widget'] == 'ReferenceWidget'">
                 <dl>
-                    <dt class="hiddenStructure">Select&hellip;</dt>
+                    <dt class="hiddenStructure" i18n:translate="">Select&hellip;</dt>
                     <dd><input class="queryvalue" autocomplete="off" tal:attributes="name python:str(fieldName)+'.v:records';" type="text" name="form.widgets.query.v:records" /></dd>
                 </dl>
             </div>
@@ -150,7 +154,7 @@
             <label for="addindex" class="hiddenStructure">Add criterion</label>
 
             <select class="addIndex" name="addindex" tal:condition="python: not(addindexselected) or addoperatorselected">
-                <option value="" selected="selected">Select&hellip;</option>
+                <option value="" selected="selected" i18n:translate="">Select&hellip;</option>
                 <tal:index repeat="groupName python:config['groupedIndexes'].keys()">
                     <optgroup tal:attributes="label python:groupName">
                         <option tal:repeat="index python:config['groupedIndexes'][groupName]"
@@ -168,7 +172,7 @@
             </div>
 
             <select class="addOperator" name="addoperator" tal:condition="python: addindexselected and not(addoperatorselected)">
-                <option value="" selected="selected">Select&hellip;</option>
+                <option value="" selected="selected" i18n:translate="">Select&hellip;</option>
                 <tal:index repeat="index python:indexes[request.form['addindex']]['operators'].keys()">
                     <option tal:attributes="value index;"
                             tal:content="python:indexes[request.form['addindex']]['operators'][index]['title']">Index</option>
@@ -180,7 +184,7 @@
 
         <div class="sortingField">
             <div class="formHelp"><!-- --></div>
-            <label for="sort_on">
+            <label for="sort_on" i18n:translate="">
             Sort on
             </label>
             <select name="sort_on" id="sort_on">
@@ -191,10 +195,10 @@
             </select>
 
             <input type="checkbox" name="sort_order" value="reverse" checked="checked" id="sort_order"/>
-            <label for="sort_order">Reversed order</label>
+            <label for="sort_order" i18n:translate="">Reversed order</label>
         </div>
 
-        <label class="previewresultsLabel">Preview</label>
+        <label class="previewresultsLabel" i18n:translate="">Preview</label>
         <div class="previewresults" tal:content="structure python:widget.SearchResults()">
         </div>
     </div>
