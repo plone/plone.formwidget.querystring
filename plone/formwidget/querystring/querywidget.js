@@ -223,58 +223,6 @@
         $.get(query, {}, function (data) { $('.QueryWidget .previewresults').html(data); });
     };
 
-    // Enhance for javascript browsers
-    $(document).ready(function () {
-
-        // Check if QueryWidget exists on page
-        if ($(".QueryWidget").length === 0) {
-            return false;
-        }
-
-        // Init
-        $.querywidget.init();
-
-        // We need two keep two fields for each sorting field ('#sort_on',
-        // '#sort_reversed'). The query results preview that calls
-        // '@@querybuilder_html_results' in plone.app.querystring expects a
-        // sort_on and sort_order param. To store the actual setting on the
-        // collection we need the two z3c.form-based fields
-        // ('#form-widgets-sort_on', '#form-widgets-sort_reversed')
-
-        // Synchronize the '#sort_on' field with the hidden
-        // #form-widgets-sort_on z3c.form field on load.
-        $('#sort_on').val($('#form-widgets-sort_on').val());
-
-        // Synchronize the '#sort_order' field with the hidden
-        // #form-widgets-sort_reversed z3c.form field on load.
-        if ($('#form-widgets-sort_reversed-0').attr('checked')) {
-            $('#sort_order').attr('checked', true);
-        } else {
-            $('#sort_order').attr('checked', false);
-        }
-
-        // Synchronize the z3c.form '#form-widgets-sort_on' field
-        // with the '#sort_on' field on user interaction
-        $("#sort_on").live('click', function () {
-            $('#form-widgets-sort_on').val($(this).val());
-        });
-
-        // Synchronize the z3c.form '#form-widgets-sort_reversed' field
-        // with the '#sort_order' field on user interaction.
-        $("#sort_order").live('click', function () {
-            if ($(this).is(":checked")) {
-                $('#form-widgets-sort_reversed-0').attr('checked', true);
-            } else {
-                $('#form-widgets-sort_reversed-0').attr('checked', false);
-            }
-        });
-
-        // Hide the z3c.form widgets for sorting because they are only needed
-        // internally.
-        $('#formfield-form-widgets-sort_on').hide();
-        $('#formfield-form-widgets-sort_reversed').hide();
-
-    });
 
     // Init widget
     $.querywidget.init = function () {
@@ -423,3 +371,85 @@
     };
 
 }(jQuery));
+
+
+(function($, undefined) {
+
+    var QueryStringWidget = function(el, options) { this.init(el, options); };
+    QueryStringWidget.prototype = {
+        init: function(el, options) {
+            var self = this;
+
+            self.el = $(el);
+            self.options = options;
+
+            // Init
+            $.querywidget.init();
+
+            // We need two keep two fields for each sorting field ('#sort_on',
+            // '#sort_reversed'). The query results preview that calls
+            // '@@querybuilder_html_results' in plone.app.querystring expects a
+            // sort_on and sort_order param. To store the actual setting on the
+            // collection we need the two z3c.form-based fields
+            // ('#form-widgets-sort_on', '#form-widgets-sort_reversed')
+
+            // Synchronize the '#sort_on' field with the hidden
+            // #form-widgets-sort_on z3c.form field on load.
+            $('#sort_on').val($('#form-widgets-sort_on').val());
+
+            // Synchronize the '#sort_order' field with the hidden
+            // #form-widgets-sort_reversed z3c.form field on load.
+            if ($('#form-widgets-sort_reversed-0').attr('checked')) {
+                $('#sort_order').attr('checked', true);
+            } else {
+                $('#sort_order').attr('checked', false);
+            }
+
+            // Synchronize the z3c.form '#form-widgets-sort_on' field
+            // with the '#sort_on' field on user interaction
+            $("#sort_on").live('click', function () {
+                $('#form-widgets-sort_on').val($(this).val());
+            });
+
+            // Synchronize the z3c.form '#form-widgets-sort_reversed' field
+            // with the '#sort_order' field on user interaction.
+            $("#sort_order").live('click', function () {
+                if ($(this).is(":checked")) {
+                    $('#form-widgets-sort_reversed-0').attr('checked', true);
+                } else {
+                    $('#form-widgets-sort_reversed-0').attr('checked', false);
+                }
+            });
+
+            // Hide the z3c.form widgets for sorting because they are only needed
+            // internally.
+            $('#formfield-form-widgets-sort_on').hide();
+            $('#formfield-form-widgets-sort_reversed').hide();
+
+
+        },
+        updateOptions: function(options) {
+            var self = this;
+            self.options = $.extend(self.options, options);
+        }
+    };
+
+    $.fn.ploneQueryStringWidget = function(options) {
+        $(this).each(function(i, el){
+            var data = $(el).data('plone-widget-querystring');
+            if (data === undefined) {
+                data = new QueryStringWidget($(el), options);
+            } else {
+                data.updateOptions(options);
+            }
+        });
+        return this;
+    };
+
+    $(document).ready(function () {
+        $(".QueryWidget").ploneQueryStringWidget();
+    });
+
+}(jQuery));
+
+
