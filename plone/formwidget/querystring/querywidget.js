@@ -223,6 +223,16 @@
         $.get(query, {}, function (data) { $('.QueryWidget .previewresults').html(data); });
     };
 
+    /* Clicking outside a multipleSelectionWidget will close all open
+       multipleSelectionWidgets */
+    $.querywidget.hideMultiSelectionWidgetEvent = function(event) {
+        if ($(event.target).parents('.multipleSelectionWidget').length) {
+            return;
+        }
+        $('.multipleSelectionWidget dd').hide();
+    }
+
+
     // Enhance for javascript browsers
     $(document).ready(function () {
 
@@ -274,6 +284,9 @@
         $('#formfield-form-widgets-sort_on').hide();
         $('#formfield-form-widgets-sort_reversed').hide();
 
+        // Bind the event that listens on the window and hide the widget
+        $(window).bind('click', $.querywidget.hideMultiSelectionWidgetEvent);
+
     });
 
     // Init widget
@@ -322,19 +335,15 @@
         });
 
         $('.multipleSelectionWidget dt').live('click', function () {
-            $(this).parent().children('dd').toggle();
-        });
-
-        /* Clicking outside a multipleSelectionWidget will close all open
-           multipleSelectionWidgets */
-
-        $(window).click(function(event){
-            if ($(event.target).parents('.multipleSelectionWidget').length) {
-                return;
+            var multiselectionwidget = $(this).parent().children('dd');
+            if($(multiselectionwidget).is(':visible')) {
+                $(multiselectionwidget).hide();
+                $(window).unbind('click', $.querywidget.hideMultiSelectionWidgetEvent);
+            } else {
+                $(multiselectionwidget).show();
+                $(window).bind('click', $.querywidget.hideMultiSelectionWidgetEvent);
             }
-            $('.multipleSelectionWidget dd').hide();
         });
-
 
         $('.queryindex').live('change', function () {
             var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
