@@ -10,6 +10,13 @@ Changelog
 - Fixed conditional initialization of querywidget,
   see https://dev.plone.org/ticket/12529 [kroman0]
 
+- The widget can now be hidden, when clicking on the
+  window or the widget. The event is only effective
+  when the widget is displayed.
+  [bosim]
+
+- Translations are now in Plone domain
+  [bosim]
 
 1.0b2 (2012-03-19)
 ------------------

@@ -223,6 +223,16 @@
         $.get(query, {}, function (data) { $('.QueryWidget .previewresults').html(data); });
     };
 
+    /* Clicking outside a multipleSelectionWidget will close all open
+       multipleSelectionWidgets */
+    $.querywidget.hideMultiSelectionWidgetEvent = function(event) {
+        if ($(event.target).parents('.multipleSelectionWidget').length) {
+            return;
+        }
+        $('.multipleSelectionWidget dd').addClass('hiddenStructure');
+    }
+
+
     // Enhance for javascript browsers
     $(document).ready(function () {
 
@@ -322,10 +332,13 @@
         });
 
         $('.multipleSelectionWidget dt').live('click', function () {
-            if ($(this).parent().children('dd').hasClass('hiddenStructure')) {
-                $(this).parent().children('dd').removeClass('hiddenStructure');
+            var multiselectionwidget = $(this).parent().children('dd');
+            if(!$(multiselectionwidget).hasClass('hiddenStructure')) {
+                $(multiselectionwidget).addClass('hiddenStructure');
+                $(window).unbind('click', $.querywidget.hideMultiSelectionWidgetEvent);
             } else {
-                $(this).parent().children('dd').addClass('hiddenStructure');
+                $(multiselectionwidget).removeClass('hiddenStructure');
+                $(window).bind('click', $.querywidget.hideMultiSelectionWidgetEvent);
             }
         });
 

@@ -69,11 +69,8 @@ dl.multipleSelectionWidget,
 }
 .multipleSelectionWidget dd {
     width: 198px;
-    border-width: 1px;
-    border-style: solid;
     background: white;
     overflow:auto;
-    height:6.5em;
 }
 .multipleSelectionWidget label {
     display: block;
@@ -97,4 +94,15 @@ dl.querywidget dd {
 }
 .criteria {
     clear: both;
+}
+.widgetPulldownMenu {
+   border-width: 1px;
+   border-style: solid;
+   height:6.5em;
+}
+
+/* TODO: This should be fixed in public.css, so hiddenStructure will always
+   have the highest priority. */
+.multipleSelectionWidget .hiddenStructure {
+   display: none !important;
 }
