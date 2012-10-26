@@ -229,7 +229,7 @@
         if ($(event.target).parents('.multipleSelectionWidget').length) {
             return;
         }
-        $('.multipleSelectionWidget dd').hide();
+        $('.multipleSelectionWidget dd').addClass('hiddenStructure');
     }
 
 
@@ -284,9 +284,6 @@
         $('#formfield-form-widgets-sort_on').hide();
         $('#formfield-form-widgets-sort_reversed').hide();
 
-        // Bind the event that listens on the window and hide the widget
-        $(window).bind('click', $.querywidget.hideMultiSelectionWidgetEvent);
-
     });
 
     // Init widget
@@ -336,11 +333,11 @@
 
         $('.multipleSelectionWidget dt').live('click', function () {
             var multiselectionwidget = $(this).parent().children('dd');
-            if($(multiselectionwidget).is(':visible')) {
-                $(multiselectionwidget).hide();
+            if(!$(multiselectionwidget).hasClass('hiddenStructure')) {
+                $(multiselectionwidget).addClass('hiddenStructure');
                 $(window).unbind('click', $.querywidget.hideMultiSelectionWidgetEvent);
             } else {
-                $(multiselectionwidget).show();
+                $(multiselectionwidget).removeClass('hiddenStructure');
                 $(window).bind('click', $.querywidget.hideMultiSelectionWidgetEvent);
             }
         });
