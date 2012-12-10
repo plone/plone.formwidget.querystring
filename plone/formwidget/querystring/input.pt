@@ -14,7 +14,8 @@
         <tal:counter tal:define="dummy python:request.set('querystringwidgetcounter', 0)"/>
         <tal:row repeat="row rows">
             <div class="criteria"
-                 tal:condition="python:not request.has_key('removecriteria.%s' % repeat['row'].index)">
+                 tal:condition="python:not request.has_key('removecriteria.%s' % repeat['row'].index) and
+                                       row.i in indexes">
                 <div class="queryindex">
                     <input type="hidden" name="form.widgets.query.i:records"
                            tal:attributes="name python:str(fieldName)+'.i:records'; value row/i" />
