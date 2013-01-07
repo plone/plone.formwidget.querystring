@@ -27,7 +27,7 @@ class QueryStringConverter(BaseDataConverter):
                 for key, value in dict_.items():
                     if isinstance(value, list):
                         new_dict[key.encode('utf-8')] = \
-                        [x.encode('utf-8') for x in value]
+                            [x.encode('utf-8') for x in value]
                     else:
                         new_dict[key.encode('utf-8')] = value.encode('utf-8')
                 data.append(new_dict)
@@ -44,7 +44,7 @@ class QueryStringConverter(BaseDataConverter):
                 for key, value in dict_.items():
                     if isinstance(value, list):
                         new_dict[key.decode('utf-8')] = \
-                        [x.decode('utf-8') for x in value]
+                            [x.decode('utf-8') for x in value]
                     else:
                         new_dict[key.decode('utf-8')] = value.decode('utf-8')
                 data.append(new_dict)

@@ -50,7 +50,8 @@ class QueryStringWidget(Widget):
         options = dict(original_context=site)
         querybuilder = QueryBuilder(site, self.request)
         listing = querybuilder(query=self.value)
-        return getMultiAdapter((listing, self.request),
+        return getMultiAdapter(
+            (listing, self.request),
             name='display_query_results')(**options)
 
 
