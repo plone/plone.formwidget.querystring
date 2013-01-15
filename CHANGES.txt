@@ -18,6 +18,12 @@ Changelog
 - Translations are now in Plone domain
   [bosim]
 
+- Made the widget a bit more resistent to missing entries, i.e. vocabularies or in 
+  other way indexes. The problem occur if an option is deleted from the registry 
+  but not deleted from the collections in before hand.
+  [bosim]
+
+
 1.0b2 (2012-03-19)
 ------------------
 
