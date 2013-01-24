@@ -23,6 +23,9 @@ Changelog
   but not deleted from the collections in before hand.
   [bosim]
 
+- Update import path for pagetemplate. Now only works with 4.1 and higher
+  [do3cc]
+
 
 1.0b2 (2012-03-19)
 ------------------

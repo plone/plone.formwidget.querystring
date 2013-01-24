@@ -1,7 +1,7 @@
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from zope.interface import implements, implementer
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.site.hooks import getSite
 import z3c.form.interfaces
 import z3c.form.util
