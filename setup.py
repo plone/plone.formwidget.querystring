@@ -6,7 +6,7 @@ setup(name='plone.formwidget.querystring',
       version=version,
       description="A widget for composing a Query string/search.",
       long_description=open("README.rst").read() + "\n" +
-                       open("CHANGES.txt").read(),
+                       open("CHANGES.rst").read(),
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
