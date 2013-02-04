@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b3 (unreleased)
+1.0b3 (2013-02-04)
 ------------------
 
 - Fixed context for getting ajax results
