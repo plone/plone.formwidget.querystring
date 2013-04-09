@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0b4 (unreleased)
+------------------
+
+- If we set background to 'white' we should set foreground to 'black' to avoid
+  people getting white font on white background if they use white font color
+  for their plone sites.  [saily]
+
+
 1.0b3 (2013-02-04)
 ------------------
 
