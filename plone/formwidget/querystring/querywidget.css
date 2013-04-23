@@ -69,11 +69,12 @@ dl.multipleSelectionWidget,
 }
 .multipleSelectionWidget dd {
     width: 198px;
-    background: white;
+    background: #FFF;
     overflow:auto;
 }
 .multipleSelectionWidget label {
     display: block;
+    color: #000;
 }
 .querywidget {
     float: left;
