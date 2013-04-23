@@ -97,6 +97,20 @@
                         })
                         .addClass('queryvalue')
                     );
+            case 'RelativeDateWidget':
+                return $(document.createElement('div'))
+                    .addClass('querywidget relativeDateWidget')
+	            .append($(document.createElement('input'))
+                        .attr({
+                            'autocomplete': 'off',
+                            'type': 'text',
+                            'name': fname + '.v:records'
+			})
+			.addClass('queryvalue')
+		    )
+	            .append($(document.createElement('span'))
+			.html('days')
+		    );
             case 'ReferenceWidget':
                 return $(document.createElement('dl'))
                     .addClass('querywidget referenceWidget')
@@ -200,6 +214,7 @@
                     querylist.push('query.v:records:list=' + $(daterangewidget.children('input')[0]).val());
                     querylist.push('query.v:records:list=' + $(daterangewidget.children('input')[1]).val());
                     break;
+
                 case 'MultipleSelectionWidget':
                     var multipleselectionwidget = $(this).parents('.criteria').find('.querywidget');
                     multipleselectionwidget.find('input:checked').each(function () {
