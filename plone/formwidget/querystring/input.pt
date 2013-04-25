@@ -73,6 +73,13 @@
                            tal:attributes="name python:str(fieldName)+'.v:records:list'; value python:row['v'][1]"/>
                 </div>
 
+		<div class="querywidget relativeDateWidget"
+		     tal:condition="python:indexes[row.i]['operators'][row.o]['widget'] == 'RelativeDateWidget'">
+		     <input class="queryvalue" autocomplete="off" type="text" name="form.widgets.query.v:records"
+			    tal:attributes="name python:str(fieldName)+'.v:records'; value python:row['v']"/>
+		     <span i18n:translate="">days</span>
+		</div>
+		
                 <input class="querywidget queryvalue relativePathWidget"
                        autocomplete="off" type="text" name="form.widgets.query.v:records"
                        tal:attributes="name python:str(fieldName)+'.v:records'; value python:row['v']"
