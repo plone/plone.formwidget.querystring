@@ -10,7 +10,8 @@
          sortable_indexes config/sortable_indexes;
          addindexselected python:request.has_key('addindex') and request.addindex != '';
          addoperatorselected python:request.has_key('addoperator') and request.addoperator != ''">
-
+      <script tal:replace="structure widget/js"/>
+      
         <tal:counter tal:define="dummy python:request.set('querystringwidgetcounter', 0)"/>
         <tal:row repeat="row rows">
             <div class="criteria"
@@ -59,17 +60,17 @@
                     </dd>
                 </dl>
 
-                <input class="querywidget queryvalue dateWidget"
+                <input class="querywidget queryvalue dateWidget date"
                        autocomplete="off" type="text" name="form.widgets.query.v:records"
                        tal:attributes="name python:str(fieldName)+'.v:records'; value python:row['v']"
                        tal:condition="python:indexes[row.i]['operators'][row.o]['widget'] == 'DateWidget'"/>
 
                 <div class="querywidget queryvalue dateRangeWidget"
                      tal:condition="python:indexes[row.i]['operators'][row.o]['widget'] == 'DateRangeWidget'">
-                    <input autocomplete="off" type="text" name="form.widgets.query.v:records:list"
+                    <input class="date" autocomplete="off" type="text" name="form.widgets.query.v:records:list"
                            tal:attributes="name python:str(fieldName)+'.v:records:list'; value python:row['v'][0]"/>
                     <span> and </span>
-                    <input autocomplete="off" type="text" name="form.widgets.query.v:records:list"
+                    <input class="date" autocomplete="off" type="text" name="form.widgets.query.v:records:list"
                            tal:attributes="name python:str(fieldName)+'.v:records:list'; value python:row['v'][1]"/>
                 </div>
 
@@ -140,6 +141,7 @@
             <div class="querywidget queryvalue dateWidget"
                  tal:condition="python:indexes[request.form['addindex']]['operators'][request.form['addoperator']]['widget'] == 'DateWidget'">
                 <input autocomplete="off" type="text" class="queryvalue" tal:attributes="name python:str(fieldName)+'.v:records';" name="form.widgets.query.v:records" />
+		
             </div>
 
             <div class="querywidget queryvalue dateRangeWidget"
