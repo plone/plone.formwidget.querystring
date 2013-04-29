@@ -16,6 +16,7 @@ from plone.registry.interfaces import IRegistry
 class QueryStringWidget(Widget):
     implements(IQueryStringWidget)
 
+    calendar_type = 'gregorian'
     klass = u'querystring-widget'
     input_template = ViewPageTemplateFile('input.pt')
 
@@ -52,6 +53,33 @@ class QueryStringWidget(Widget):
         listing = querybuilder(query=self.value)
         return getMultiAdapter((listing, self.request),
             name='display_query_results')(**options)
+
+
+    def js(self):
+        language = getattr(self.request, 'LANGUAGE', 'en')
+        calendar = self.request.locale.dates.calendars[self.calendar_type]
+        localize =  'jQuery.tools.dateinput.localize("' + language + '", {'
+        localize += 'months: "%s",' % ','.join(calendar.getMonthNames())
+        localize += 'shortMonths: "%s",' % ','.join(calendar.getMonthAbbreviations())
+        # calendar tool's number of days is off by one from jquery tools'
+        localize += 'days: "%s",' % ','.join(
+            [calendar.getDayNames()[6]] + calendar.getDayNames()[:6])
+        localize += 'shortDays: "%s"' % ','.join(
+            [calendar.getDayAbbreviations()[6]] +
+            calendar.getDayAbbreviations()[:6])
+        localize += '});'
+
+        defaultlang = 'jQuery.tools.dateinput.conf.lang = "%s";' % language
+
+        return '''
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    if (jQuery().dateinput) {
+                        %(localize)s
+                        %(defaultlang)s
+                    }
+                });
+            </script>''' % dict(defaultlang=defaultlang, localize=localize)
 
 
 @implementer(z3c.form.interfaces.IFieldWidget)
