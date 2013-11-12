@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.1.0 (unreleased)
+------------------
+
+- Change javascript to work on ``form-widgets-ICollection`` fields
+  instead of ``form-widgets``.
+  [maurits, kaselis]
+
+
 1.0b4 (unreleased)
 ------------------
 
