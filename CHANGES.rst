@@ -4,8 +4,8 @@ Changelog
 1.1.0 (unreleased)
 ------------------
 
-- Change javascript to work on ``form-widgets-ICollection`` fields
-  instead of ``form-widgets``.
+- Change javascript to work on ``form-widgets-ICollection`` fields instead of
+  ``form-widgets``.
   [maurits, kaselis]
 
 
@@ -15,9 +15,13 @@ Changelog
 - If we set background to 'white' we should set foreground to 'black' to avoid
   people getting white font on white background if they use white font color
   for their plone sites.  [saily]
-- add handling of the RelativeDateWidget, already expected to exist in p.a.querystring
+
+- Add handling of the RelativeDateWidget, already expected to exist in
+  p.a.querystring.
   [tmog]
-- add jquery dateinput to dateWidget and dateRangeWidget [tmog]
+
+- Add jquery dateinput to dateWidget and dateRangeWidget.
+  [tmog]
 
 
 1.0b3 (2013-02-04)
@@ -27,7 +31,8 @@ Changelog
   [kroman0]
 
 - Fixed conditional initialization of querywidget,
-  see http://dev.plone.org/ticket/12529 [kroman0]
+  see http://dev.plone.org/ticket/12529
+  [kroman0]
 
 - The widget can now be hidden, when clicking on the
   window or the widget. The event is only effective
