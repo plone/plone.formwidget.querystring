@@ -4,7 +4,9 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
-- No changes yet.
+- Avoid `TypeError: 'NoneType' object is not iterable` when the query
+  of the collection is still `None`, like is the case when adding one.
+  [maurits]
 
 
 1.1.0 (2013-11-14)

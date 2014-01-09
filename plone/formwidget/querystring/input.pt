@@ -6,7 +6,7 @@
 
     <div tal:define="config widget/getConfig;
          indexes config/indexes;
-         rows widget/value;
+         rows python:widget.value or [];
          sortable_indexes config/sortable_indexes;
          addindexselected python:request.has_key('addindex') and request.addindex != '';
          addoperatorselected python:request.has_key('addoperator') and request.addoperator != ''">
