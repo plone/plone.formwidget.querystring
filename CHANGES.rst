@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.1 (unreleased)
+1.1.1 (2014-02-23)
 ------------------
 
 - Avoid `TypeError: 'NoneType' object is not iterable` when the query
