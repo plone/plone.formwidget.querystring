@@ -163,7 +163,7 @@
         <div class="criteria">
             <label for="addindex" class="hiddenStructure">Add criterion</label>
 
-            <select class="addIndex" name="addindex" tal:condition="python: not(addindexselected) or addoperatorselected">
+            <select class="addIndex" name="addindex" id="addindex" tal:condition="python: not(addindexselected) or addoperatorselected">
                 <option value="" selected="selected" i18n:translate="">Select&hellip;</option>
                 <tal:index repeat="groupName python:config['groupedIndexes'].keys()">
                     <optgroup tal:attributes="label python:groupName">
