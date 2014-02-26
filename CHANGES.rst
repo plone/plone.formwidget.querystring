@@ -4,7 +4,8 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed label for "Add Criteria" (missing id="addindex")
+  [djay]
 
 
 1.1.1 (2014-02-23)
