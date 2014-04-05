@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.2 (unreleased)
+1.1.2 (2014-04-05)
 ------------------
 
 - Fixed label for "Add Criteria" (missing id="addindex")
