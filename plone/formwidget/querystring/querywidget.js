@@ -198,7 +198,7 @@
                 });
         }
     };
-    
+
     $.querywidget.updateSearch = function () {
         var context_url = (function() {
             var baseUrl, pieces;
