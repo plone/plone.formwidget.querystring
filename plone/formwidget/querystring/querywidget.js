@@ -274,7 +274,7 @@
         // Init
         $.querywidget.init();
 
-	
+
         // We need two keep two fields for each sorting field ('#sort_on',
         // '#sort_reversed'). The query results preview that calls
         // '@@querybuilder_html_results' in plone.app.querystring expects a
@@ -296,7 +296,7 @@
 
         // Synchronize the z3c.form '#form-widgets-ICollection-sort_on' field
         // with the '#sort_on' field on user interaction
-        $("#sort_on").live('click', function () {
+        $("#sort_on").live('change', function () {
             $('#form-widgets-ICollection-sort_on').val($(this).val());
         });
 
@@ -360,7 +360,7 @@
                 });
                 $.querywidget.updateSearch();
 		$.querywidget.updateWidget();
-		
+
             });
         });
 
