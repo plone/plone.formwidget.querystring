@@ -4,7 +4,9 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed sort index selection which was not preserved when editing collection
+  criteria.
+  [naro]
 
 
 1.1.2 (2014-04-05)
