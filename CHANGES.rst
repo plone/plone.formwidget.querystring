@@ -7,6 +7,8 @@ Changelog
 - Fixed sort index selection which was not preserved when editing collection
   criteria.
   [naro]
+- make compatible with jQuery >= 1.9
+  [petschki]
 
 
 1.1.2 (2014-04-05)

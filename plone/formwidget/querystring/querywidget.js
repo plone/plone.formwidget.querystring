@@ -100,17 +100,17 @@
             case 'RelativeDateWidget':
                 return $(document.createElement('div'))
                     .addClass('querywidget relativeDateWidget')
-	            .append($(document.createElement('input'))
+                .append($(document.createElement('input'))
                         .attr({
                             'autocomplete': 'off',
                             'type': 'text',
                             'name': fname + '.v:records'
-			})
-			.addClass('queryvalue')
-		    )
-	            .append($(document.createElement('span'))
-			.html('days')
-		    );
+            })
+            .addClass('queryvalue')
+            )
+                .append($(document.createElement('span'))
+            .html('days')
+            );
             case 'ReferenceWidget':
                 return $(document.createElement('dl'))
                     .addClass('querywidget referenceWidget')
@@ -185,10 +185,10 @@
     };
 
     $.querywidget.updateWidget = function (node) {
-	if (typeof(node) === "undefined") {
-	    node = $('.querywidget');
-	}
-	if ($().dateinput) {
+    if (typeof(node) === "undefined") {
+        node = $('.querywidget');
+    }
+    if ($().dateinput) {
             $(node).parents('.criteria').find('.date').dateinput({change: function() { $.querywidget.updateSearch();}, firstDay: 1,selectors: true, trigger: false, yearRange: [-10, 10]}).unbind('change')
                 .bind('onShow', function (event) {
                     var trigger_offset = $(this).next().offset();
@@ -296,13 +296,13 @@
 
         // Synchronize the z3c.form '#form-widgets-ICollection-sort_on' field
         // with the '#sort_on' field on user interaction
-        $("#sort_on").live('change', function () {
+        $("div.QueryWidget").on('change', '#sort_on', function () {
             $('#form-widgets-ICollection-sort_on').val($(this).val());
         });
 
         // Synchronize the z3c.form '#form-widgets-ICollection-sort_reversed' field
         // with the '#sort_order' field on user interaction.
-        $("#sort_order").live('click', function () {
+        $("div.QueryWidget").on('click', '#sort_order', function () {
             if ($(this).is(":checked")) {
                 $('#form-widgets-ICollection-sort_reversed-0').attr('checked', true);
             } else {
@@ -359,12 +359,12 @@
                                                             $(this).children('input').val(), fname));
                 });
                 $.querywidget.updateSearch();
-		$.querywidget.updateWidget();
+        $.querywidget.updateWidget();
 
             });
         });
 
-        $('.multipleSelectionWidget dt').live('click', function () {
+        $("div.QueryWidget").on('click', '.multipleSelectionWidget dt', function () {
             var multiselectionwidget = $(this).parent().children('dd');
             if(!$(multiselectionwidget).hasClass('hiddenStructure')) {
                 $(multiselectionwidget).addClass('hiddenStructure');
@@ -375,7 +375,7 @@
             }
         });
 
-        $('.queryindex').live('change', function () {
+        $("div.QueryWidget").on('change', '.queryindex', function () {
             var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             $(this).parents(".criteria").children('.queryoperator')
@@ -385,12 +385,12 @@
             var querywidget = $(this).parent(".criteria").children('.querywidget');
             if ((widget !== $.querywidget.getCurrentWidget(querywidget)) || (widget === 'MultipleSelectionWidget')) {
                 querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
-		$.querywidget.updateWidget($(this).parent(".criteria").children('.querywidget'));
+        $.querywidget.updateWidget($(this).parent(".criteria").children('.querywidget'));
             }
             $.querywidget.updateSearch();
         });
 
-        $('.queryoperator').live('change', function () {
+        $("div.QueryWidget").on('change', '.queryoperator', function () {
             var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).parents('.criteria').children('.queryindex').val();
             var operatorvalue = $(this).children(':selected')[0].value;
@@ -398,17 +398,17 @@
             var querywidget = $(this).parent().children('.querywidget');
             if (widget !== $.querywidget.getCurrentWidget(querywidget)) {
                 querywidget.replaceWith($.querywidget.createWidget(widget, index, fname));
-		$.querywidget.updateWidget($(this).parent().children('.querywidget'));
+        $.querywidget.updateWidget($(this).parent().children('.querywidget'));
             }
             $.querywidget.updateSearch();
 
         });
 
-        $('#sort_on,#sort_order').live('change', function () {
+        $("div.QueryWidget").on('change', '#sort_on,#sort_order', function () {
             $.querywidget.updateSearch();
         });
 
-        $('.multipleSelectionWidget input').live('change', function () {
+        $("div.QueryWidget").on('change', '.multipleSelectionWidget input', function () {
             var widget = $(this).parents('.multipleSelectionWidget');
             var selected_values = [];
             widget.find('input:checked').each(function () {
@@ -420,17 +420,17 @@
             $.querywidget.updateSearch();
         });
 
-        $('.queryvalue').live('keyup', function () {
+        $("div.QueryWidget").on('keyup', '.queryvalue', function () {
             $.querywidget.updateSearch();
         });
 
-        $('.queryvalue').live('keydown', function (e) {
+        $("div.QueryWidget").on('keydown', '.queryvalue', function (e) {
             if (e.keyCode === 13) {
                 return false;
             }
         });
 
-        $('.addIndex').live('change', function () {
+        $("div.QueryWidget").on('change', '.addIndex', function () {
             var fname = $(this).closest('.QueryWidget').attr('data-fieldname');
             var index = $(this).find(':selected')[0].value;
             var criteria = $(this).parents('.criteria');
@@ -464,7 +464,7 @@
             $.querywidget.updateSearch();
         });
 
-        $('.removecriteria').live('click', function () {
+        $("div.QueryWidget").on('click', '.removecriteria', function () {
             $(this).parents('.criteria').remove();
             $.querywidget.updateSearch();
             return false;
