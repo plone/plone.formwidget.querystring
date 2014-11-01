@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.3 (unreleased)
+1.1.3 (2014-11-01)
 ------------------
 
 - Fixed sort index selection which was not preserved when editing collection
