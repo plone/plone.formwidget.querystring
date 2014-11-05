@@ -4,7 +4,8 @@ Changelog
 1.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix criteria checkbox rendering if value contains non ASCII characters.
+  [rnixx]
 
 
 1.1.3 (2014-11-01)
@@ -13,6 +14,7 @@ Changelog
 - Fixed sort index selection which was not preserved when editing collection
   criteria.
   [naro]
+
 - make compatible with jQuery >= 1.9
   [petschki]
 

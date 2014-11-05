@@ -44,7 +44,7 @@
                         <tal:values repeat="index python:indexes[row.i]['values'].keys()">
                             <label>
                                 <input type="checkbox" name="form.widgets.query.v:records:list"
-                                       tal:attributes="name python:str(fieldName)+'.v:records:list'; value index;
+                                       tal:attributes="name python:str(fieldName)+'.v:records:list'; value python:index.decode('utf-8');
                                        checked python: row.has_key('v') and index in row.v and 'checked' or nothing"/>
                                 <span tal:content="python:indexes[row.i]['values'][index]['title']"/>
                             </label>
@@ -123,7 +123,7 @@
                 <dd>
                     <tal:values repeat="index python:indexes[request.form['addindex']]['values'].keys()">
                         <label>
-                            <input type="checkbox" name="form.widgets.query.v:records:list" tal:attributes="name python:str(fieldName)+'.v:records:list'; value index" />
+                            <input type="checkbox" name="form.widgets.query.v:records:list" tal:attributes="name python:str(fieldName)+'.v:records:list'; value python:index.decode('utf-8')" />
                             <span tal:content="python:indexes[request.form['addindex']]['values'][index]['title']"/>
                         </label>
                     </tal:values>
