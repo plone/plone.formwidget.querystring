@@ -3,6 +3,7 @@
     xmlns:zope="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="plone">
 
@@ -19,6 +20,7 @@
     provides="zope.app.form.interfaces.IInputWidget"
     factory=".widget.QueryStringWidget"
     permission="zope.Public"
+    zcml:condition="installed zope.app.form"
     />
 
   <genericsetup:registerProfile
