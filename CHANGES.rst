@@ -4,8 +4,9 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
-- conditionally setup zope.app.form field
+- Conditionally setup zope.app.form field.
   [vangheem]
+
 
 1.1.4 (2014-11-05)
 ------------------
