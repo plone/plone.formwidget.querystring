@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.5 (unreleased)
+1.1.5 (2015-07-18)
 ------------------
 
 - Conditionally setup zope.app.form field.
