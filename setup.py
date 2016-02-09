@@ -12,7 +12,9 @@ setup(
     long_description=long_description,
     classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone : 5.0",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
     ],
     keywords='',
     author='Plone Foundation',
