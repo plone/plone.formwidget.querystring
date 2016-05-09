@@ -4,13 +4,10 @@ Changelog
 1.1.6 (unreleased)
 ------------------
 
-New:
-
-- *add item here*
-
 Fixes:
 
-- *add item here*
+- Fix way to decode utf-8 into template.
+  [bsuttor]
 
 
 1.1.5 (2015-07-18)
