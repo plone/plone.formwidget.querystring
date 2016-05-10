@@ -11,6 +11,7 @@ from plone.app.querystring.querybuilder import QueryBuilder
 from plone.app.querystring.interfaces import IQuerystringRegistryReader
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.utils import safe_unicode
 
 
 class QueryStringWidget(Widget):
@@ -54,7 +55,6 @@ class QueryStringWidget(Widget):
         return getMultiAdapter((listing, self.request),
             name='display_query_results')(**options)
 
-
     def js(self):
         language = getattr(self.request, 'LANGUAGE', 'en')
         calendar = self.request.locale.dates.calendars[self.calendar_type]
@@ -80,6 +80,9 @@ class QueryStringWidget(Widget):
                     }
                 });
             </script>''' % dict(defaultlang=defaultlang, localize=localize)
+
+    def decode(self, value):
+        return safe_unicode(value)
 
 
 @implementer(z3c.form.interfaces.IFieldWidget)
