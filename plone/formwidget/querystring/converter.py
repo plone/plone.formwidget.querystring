@@ -1,7 +1,15 @@
+from plone.formwidget.querystring.interfaces import IQueryStringWidget
+from Products.CMFPlone.utils import safe_unicode
 from z3c.form.converter import BaseDataConverter
 from zope.schema.interfaces import IList
-from plone.formwidget.querystring.interfaces import IQueryStringWidget
+
 import zope.component
+
+
+def safe_utf8(s):
+    if isinstance(s, unicode):
+        s = s.encode('utf8')
+    return s
 
 
 class AttributeDict(dict):
@@ -26,10 +34,10 @@ class QueryStringConverter(BaseDataConverter):
                 new_dict = AttributeDict()
                 for key, value in dict_.items():
                     if isinstance(value, list):
-                        new_dict[key.encode('utf-8')] = \
-                        [x.encode('utf-8') for x in value]
+                        new_dict[safe_utf8(key)] = \
+                            [safe_utf8(x) for x in value]
                     else:
-                        new_dict[key.encode('utf-8')] = value.encode('utf-8')
+                        new_dict[safe_utf8(key)] = safe_utf8(value)
                 data.append(new_dict)
             return data
 
@@ -43,9 +51,9 @@ class QueryStringConverter(BaseDataConverter):
                 new_dict = {}
                 for key, value in dict_.items():
                     if isinstance(value, list):
-                        new_dict[key.decode('utf-8')] = \
-                        [x.decode('utf-8') for x in value]
+                        new_dict[safe_unicode(key)] = \
+                            [safe_unicode(x) for x in value]
                     else:
-                        new_dict[key.decode('utf-8')] = value.decode('utf-8')
+                        new_dict[safe_unicode(key)] = safe_unicode(value)
                 data.append(new_dict)
             return data
