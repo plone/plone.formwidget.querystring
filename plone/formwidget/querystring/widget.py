@@ -1,7 +1,7 @@
 from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 from zope.component import getMultiAdapter
-from zope.interface import implements, implementer
+from zope.interface import implementer, implementer
 from zope.site.hooks import getSite
 import z3c.form.interfaces
 import z3c.form.util
@@ -14,8 +14,8 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.utils import safe_unicode
 
 
+@implementer(IQueryStringWidget)
 class QueryStringWidget(Widget):
-    implements(IQueryStringWidget)
 
     calendar_type = 'gregorian'
     klass = u'querystring-widget'
