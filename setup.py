@@ -17,7 +17,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    keywords='',
+    keywords='form widget querystring search collection',
     author='Plone Foundation',
     author_email='plone-developers@lists.sourceforge.net',
     url='https://github.com/plone/plone.formwidget.querystring',
