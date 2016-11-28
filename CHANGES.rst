@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Prevent ASCII error for encode/decode in utf8 into converter.
+  [bsuttor]
 
 
 1.1.7 (2016-08-15)
