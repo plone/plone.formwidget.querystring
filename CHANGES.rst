@@ -4,14 +4,6 @@ Changelog
 1.1.8 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Prevent ASCII error for encode/decode in utf8 into converter.
