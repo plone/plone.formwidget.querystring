@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from Products.CMFPlone.utils import safe_unicode
 from z3c.form.converter import BaseDataConverter
