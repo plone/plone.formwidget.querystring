@@ -3,8 +3,7 @@ from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from Products.CMFPlone.utils import safe_unicode
 from z3c.form.converter import BaseDataConverter
 from zope.schema.interfaces import IList
-
-import zope.component
+from zope.component import adapter
 
 
 def safe_utf8(s):
@@ -20,9 +19,9 @@ class AttributeDict(dict):
         return self[key]
 
 
+@adapter(IList, IQueryStringWidget)
 class QueryStringConverter(BaseDataConverter):
     """Converts values for use with QueryStringWidget (make z3c.form happy)"""
-    zope.component.adapts(IList, IQueryStringWidget)
 
     def toWidgetValue(self, value):
         """Converts given value for use in the widget"""
