@@ -14,7 +14,7 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Make "Remove line" from input.pt translatable
 
 
 1.1.8 (2016-12-19)

@@ -92,7 +92,7 @@
                 </div>
 
                 <input type="submit" class="removecriteria discreet" value="Remove line"
-                       i18n:translate="removeline"
+                       i18n:attributes="value"
                        tal:attributes="name python:'removecriteria.%s' % request.get('querystringwidgetcounter')"/>
                 <tal:counter tal:define="dummy python:request.set('querystringwidgetcounter', request.get('querystringwidgetcounter') + 1)"/>
             </div>
@@ -156,7 +156,7 @@
                    tal:condition="python:indexes[request.form['addindex']]['operators'][request.form['addoperator']]['widget'] == 'RelativePathWidget'" />
 
             <input type="submit" name="removecriteria" class="removecriteria discreet"
-                   i18n:translate="removeline"
+                   i18n:attributes="value"
                    value="Remove line" />
         </div>
 
