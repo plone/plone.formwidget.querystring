@@ -14,8 +14,10 @@ New features:
 
 Bug fixes:
 
-- *add item here*
-
+- Recent Plone 4.3 versions have a change in the base href calculation. Fix
+  calculation of the baseUrl in updating the queryresults in the widgets if
+  /edit is part of the base href.
+  [fredvd, maurits]
 
 1.1.9 (2017-05-06)
 ------------------

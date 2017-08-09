@@ -201,12 +201,19 @@
 
     $.querywidget.updateSearch = function () {
         var context_url = (function() {
-            var baseUrl, pieces;
+            var baseUrl, pieces, index;
             baseUrl = $('base').attr('href');
             if (!baseUrl) {
                 pieces = window.location.href.split('/');
                 pieces.pop();
                 baseUrl = pieces.join('/');
+            }
+            index = baseUrl.lastIndexOf('/');
+            if (index > -1 && baseUrl.lastIndexOf('edit') > index) {
+                // The url is for an edit page, so we strip the last part,
+                // otherwise we wrongly get /edit/@@querybuilder_html_results
+                // 'edit' can be 'atct_edit' too.
+                baseUrl = baseUrl.slice(0, index);
             }
             return baseUrl;
         })();
