@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- fixed deprecated import ``zope.site.hooks.getSite``
+  [petschki]
 
 
 1.1.10 (2017-08-09)
