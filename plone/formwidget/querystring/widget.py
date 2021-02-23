@@ -1,17 +1,19 @@
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
-from zope.component import getUtility
-from zope.component import getMultiAdapter
-from zope.interface import implementer, implementer
-from zope.site.hooks import getSite
+# -*- coding: utf-8 -*-
 import z3c.form.interfaces
 import z3c.form.util
-from z3c.form.widget import FieldWidget
-from z3c.form.widget import Widget
-from plone.app.querystring.querybuilder import QueryBuilder
+
+from Products.CMFPlone.utils import safe_unicode
 from plone.app.querystring.interfaces import IQuerystringRegistryReader
+from plone.app.querystring.querybuilder import QueryBuilder
 from plone.formwidget.querystring.interfaces import IQueryStringWidget
 from plone.registry.interfaces import IRegistry
-from Products.CMFPlone.utils import safe_unicode
+from z3c.form.widget import FieldWidget
+from z3c.form.widget import Widget
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import getMultiAdapter
+from zope.component import getUtility
+from zope.component.hooks import getSite
+from zope.interface import implementer
 
 
 @implementer(IQueryStringWidget)
